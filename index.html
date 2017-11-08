@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name='description' content='Theme: ArtanOS WebLock Classic'>
+    <meta name='author' content='Miraculous Owonubi'>
+    <!-- <meta name='viewport' content=' width=device-width, height=device-height, user-scalable=no'> <!-- 1366 * 768 -->
+
+    <script type="text/javascript" src="src/js/vendor/jquery.js"></script>
+    <script type="text/javascript" src="src/js/vendor/frost.js"></script>
+    <script type="text/javascript" src="src/js/data.js"></script>
+    <!-- mock.js is only required for local testing -->
+    <script type="text/javascript" src="src/js/mockdata.js"></script>
+    <script type="text/javascript" src="src/js/mock.js"></script>
+    <script type="text/javascript" src="src/js/greeter.js"></script>
+ <script type="text/javascript" src="src/js/vendor/jquery.nice-select.js"></script>
+<script type="text/javascript" src="src/js/vendor/fastclick.js"></script>
+    <link rel="stylesheet" href="src/css/vendor/nice-select.css">
+    <link rel="stylesheet" href="src/css/style.css">
+  </head>
+  <body onload="init()">
+    <div id="login_container">
+      <form action="javascript: respond()">
+        <span id="image_holder">
+        <img id="user_image" src="src/img/avatars/default.jpg"/> <br/>
+        </span>
+        <span id="user_name_box">
+          <select id="user_names" class="user_selector wide">
+            <option id="username_template"> --- </option>
+          </select>
+        </span>
+        <input id="pass_entry" type="password"/> <br/>
+        <input id="submit"  type="submit" value="GO"/> <br/>
+        <span>
+          <!-- <a href="#">Use Pin</a> -->
+          <span id="msgbox"> </span>
+        </span>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,186 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+body{
+  height: 100vh;
+  background: url('../img/backgrounds/default.png') fixed no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+#login_container{
+  width: 350px;
+  height: 500px;
+  /* background: inherit;
+*/
+  position: absolute;
+  overflow: hidden; 
+  top: 50%;
+  left: 50%;
+  margin-left: -175px;
+  margin-top: -250px;
+  border-radius: 8px;
+}
+
+#login_container:before {
+  width: 400px;
+  height: 550px;
+  content: "";
+  position: absolute;
+  top: -25px;
+  left: -25px;
+  bottom: 0;
+  right: 0;
+  /* background: inherit;
+*/
+  box-shadow: inset 0 0 10px 200px rgba(255,255,255,0.2);
+  /* filter: blur(10px);
+*/
+  -webkit-filter: blur(10px);
+}
+
+#login_container:after {
+  /*overflow: hidden; */
+}
+
+form img{
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+}
+
+form{
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+#user_image {
+  transition: 1s background-image;
+  -webkit-transition: 1s background-image;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+input, .user_selector {
+  background: 0;
+  width: 200px;
+  border: 0;
+  border-bottom: 2px solid rgba(255,255,255, 0.3);
+  margin: 20px 0;
+  padding-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgba(255,255,255, 0.8);
+  transition: 0.5s border-color;
+  -webkit-transition: 0.5s border-color;
+}
+
+#user_names {
+  display: none;
+}
+
+.user_selector {
+  border-radius: 0;
+  color: #008B8B;
+  /*overflow: auto;*/
+}
+
+.user_selector .list {
+/*  overflow: auto;
+  height: 120px;*/
+}
+
+input:focus, .user_selector:focus {
+  border-bottom: 2px solid #df2359;
+}
+
+input[type="submit"]{
+  border: 0;
+  border-radius: 8px;
+  padding-bottom: 0;
+  height: 60px;
+  background: #df2359;
+  color: white;
+  cursor: pointer;
+  transition: all 600ms ease-in-out;
+  -webkit-transition: all 600ms ease-in-out;
+  transition: border-left 4s border-right 0.2s;
+  -webkit-transition: border-left 4s border-right 0.2s;
+}
+
+input[type="submit"]:hover {
+  background: #C0392B;
+}
+
+#submit[go="true"] {
+  border-left: 180px solid #008080;
+  border-right: 20px solid #008080;
+}
+
+#submit[go="false"] {
+  background: #008080;
+  border-left: 20px solid #df2359;
+  border-right: 20px solid #df2359;
+}
+
+#msgbox {
+  color: rgba(255,255,255, 0.8);
+  transition: 0.5s color;
+  -webkit-transition: 0.5s color;
+}
+
+#msgbox[class=error] {
+  color: red;
+}
+
+
+/*
+
+COLOR CODES
+
+Teal: #008080
+DarkCyan: #008B8B
+Cyan: #00FFFF
+Pink: #df2359
+input:focus {
+  animation: inHigh 0.3s ease;
+}
+
+@keyframes inHigh {
+   from { background: #4a89dc; }
+   to { width: 0, background: transparent; }
+}
+
+.ripples {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   overflow: hidden;
+   background: transparent;
+}
+
+.ripplesCircle {
+  
+}
+
+
+
+
+/*.    */
