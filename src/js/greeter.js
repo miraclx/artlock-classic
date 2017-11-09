@@ -106,6 +106,7 @@ function setUserImage(user, box) {
            box.src = user.image;
            box.setAttribute("rpath", user.image);
            box.onerror = () => {
+               alert(box.src);
                box.src = "src/img/avatar/default.jpg";
            }
        } else {
