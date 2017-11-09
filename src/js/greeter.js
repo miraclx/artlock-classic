@@ -116,6 +116,25 @@ function authUser(user) {
     lightdm.authenticate(user);
   }
 }
+function setTheme(theme) {
+  box = window.themes[theme];
+  if ( box.font ) {
+    $("*").css("font-family", box.font);
+  }
+  if (box.container_radius) {
+    $("#login_container").css("border-radius", box.container_radius );
+  }
+  if (box.user_image_size) {
+    $("#user_image").css("width", box.user_image_size);
+    $("#user_image").css("height", box.user_image_size);
+  }
+  if (box.user_image_radius) {
+    $("#user_image").css("border-radius", box.user_image_size);
+  }
+  if (box.submit_button_text) {
+    $("#submit")[0].value = box.submit_button_text;
+  }
+}
 function getPack(username) {
   for (var i = 0; i < lightdm.users.length; i++) {
     if (lightdm.users[i].username == username) {
