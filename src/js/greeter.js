@@ -34,7 +34,11 @@ window.authentication_complete = () => {
   if (lightdm.is_authenticated) {
     c$('#submit').attr('go', true);
     show_message('Access Granted', 'success');
-    lightdm.start_session(data.selected_user, data.session);
+    try {
+      lightdm.start_session(data.session);
+    } catch (e) {
+      lightdm.login(data.selected_user, data.session);
+    }
   } else {
     c$('#submit').attr('go', false);
     setTimeout(() => {
@@ -83,6 +87,7 @@ function initUsers() {
 
     userNode.id = selected_user.username;
     userNode.onclick = user_clicked;
+    userNode.session = (selected_user.session) ? selected_user.session : lightdm.default_session;
     name_parent.appendChild(userNode);
   }
   $('select').niceSelect('update');
@@ -105,6 +110,7 @@ function setUserImage(user, box) {
 }
 function authUser(user) {
   data.selected_user = user;
+  data.session = c$("#"+user).session;
   setUserImage(getPack(user), c$('#user_image'));
   if (user) {
     lightdm.authenticate(user);
