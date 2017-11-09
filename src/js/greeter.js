@@ -16,28 +16,28 @@ if (!('lightdm' in window)) {
   // DETECTED NATIVE
 }//LightDM callbacks
 
-window.show_prompt = (prompt, type) = > {
+window.show_prompt = (prompt, type) => {
   c$('#pass_entry').placeholder = prompt.replace(':', '');
   c$('#pass_entry').value = '';
-  setTimeout(() = > {
+  setTimeout(() => {
     c$('#pass_entry').focus();
   }, 250);
   c$('#pass_entry').type = type;
   // c$("#msgbox").html("","");
 }
-window.show_message = (msg, type) = > {
+window.show_message = (msg, type) => {
   c$('#msgbox').html(msg);
   c$('#msgbox').removeAttribute('class');
   c$('#msgbox').setAttribute('class', type);
 }
-window.authentication_complete = () = > {
+window.authentication_complete = () => {
   if (lightdm.is_authenticated) {
     c$('#submit').attr('go', true);
     show_message('Access Granted', 'success');
     lightdm.start_session(data.selected_user, data.session);
   } else {
     c$('#submit').attr('go', false);
-    setTimeout(() = > {
+    setTimeout(() => {
       c$('#submit').attr('go', '');
     }, 2000);
     show_message('Access Denied', 'error');
@@ -90,11 +90,11 @@ function initUsers() {
 }
 function setUserImage(user, box) {
   if (box.getAttribute('rpath') != user.image) {
-    $('#user_image').fadeOut(250, () = > {
+    $('#user_image').fadeOut(250, () => {
       if (user.image) {
         box.src = user.image;
         box.setAttribute('rpath', user.image);
-        box.onerror = () = > {
+        box.onerror = () => {
           box.src = 'src/img/avatar/default.jpg';
         }
       } else {
