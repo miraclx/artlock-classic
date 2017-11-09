@@ -100,21 +100,24 @@ function initUsers() {
 }
 
 function setUserImage(user, box) {
-    if (user.image) {
-        box.src = user.image
-        box.onerror = () => {
-            box.src = "src/img/avatar/default.jpg";
-        }
-    } else {
-        box.src = "src/img/avatars/default.jpg";
-    }
+  if (box.getAttribute("rpath") != user.image) {
+    $("#user_image").fadeOut(250, () => {
+       if (user.image) {
+           box.src = user.image;
+           box.setAttribute("rpath", user.image);
+           box.onerror = () => {
+               box.src = "src/img/avatar/default.jpg";
+           }
+       } else {
+           box.src = "src/img/avatars/default.jpg";
+       }
+    }).fadeIn(250);
+  } 
 }
 
 function authUser(user) {
     data.selected_user = user;
-    $("#user_image").fadeOut(250, () => {
-       setUserImage( getPack(user), c$("#user_image") );
-    }).fadeIn(250);
+    setUserImage( getPack(user), c$("#user_image") );
     if ( user ) {
       lightdm.authenticate(user);
     }

@@ -18,8 +18,7 @@ body{
 #login_container{
   width: 350px;
   height: 500px;
-  /* background: inherit;
-*/
+  background: inherit;
   position: absolute;
   overflow: hidden; 
   top: 50%;
@@ -38,12 +37,10 @@ body{
   left: -25px;
   bottom: 0;
   right: 0;
-  /* background: inherit;
-*/
-  box-shadow: inset 0 0 10px 200px rgba(255,255,255,0.2);
-  /* filter: blur(10px);
-*/
-  -webkit-filter: blur(10px);
+  background: inherit;
+  box-shadow: inset 0 0 0 200px rgba(155,155,155,0.6);
+  filter: blur(10px) saturate(1.7);
+  -webkit-filter: blur(10px) saturate(1.7);
 }
 
 #login_container:after {
@@ -127,6 +124,11 @@ input[type="submit"]:hover {
   background: #C0392B;
 }
 
+#submit[go=""] {
+  border-left: 0px solid #df2359;
+  border-right: 0px solid #df2359;
+}
+
 #submit[go="true"] {
   border-left: 180px solid #008080;
   border-right: 20px solid #008080;
@@ -147,7 +149,6 @@ input[type="submit"]:hover {
 #msgbox[class=error] {
   color: red;
 }
-
 
 /*
 
