@@ -20,5 +20,19 @@ window.data = {
     'screensaver_is_shown'    :  true,
     'pass_visibility'         :  'hide',
     'logger_is_shown'         :  false
-	};
-	
+};
+
+
+window.themes = {
+	"default":	{
+		"font": "Maven",
+		"container_radius": "8px",
+		"user_image_size": "100px",
+		"user_image_radius": "100%",
+		"submit_button_text": "GO"
+	}
+}
+
+$(document).ready(function () {
+	setTheme("default");
+});
