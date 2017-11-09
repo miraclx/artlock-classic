@@ -75,8 +75,8 @@ window.mockData = {
               "description"       : "English (UK)"
 	        }],
 	        "languages": [{
-              "name":"English",
-              "code":"en-US",
-              "territory":null
-          }]          
+              "name"			:"English",
+              "code"			:"en-US",
+              "territory"	:null
+          }]
         };
