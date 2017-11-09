@@ -1,0 +1,27 @@
+@font-face {
+  font-family: "Dosis";
+  src: url("../font/Dosis-Light.otf");
+  font-weight: thin;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Dosis";
+  src: url("../font/Dosis-Regular.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Maven";
+  src: url("../font/MavenPro-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Maven";
+  src: url("../font/MavenPro-Bold.ttf");
+  font-weight: bold;
+  font-style: normal;
+}
