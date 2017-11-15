@@ -305,7 +305,7 @@ lightdmMock.prototype.start_session = function(session) {
     if(!this.is_authenticated)
         throw new IlligalUsageException("LightDM has no authenticated users to log in. Make sure to call 'lightdm.respond()' before calling this function.");
 
-    window.alert("LightDM has started a " + session + " session for " + this.getUser(this.authentication_user).display_name);
+    //window.alert("LightDM has started a " + session + " session for " + this.getUser(this.authentication_user).display_name);
     document.location.reload(true);
 };
 

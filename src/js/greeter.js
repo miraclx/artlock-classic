@@ -26,20 +26,33 @@ window.show_prompt = (prompt, type) => {
   c$('#pass_entry').type = type;
 }
 window.show_message = (msg, type) => {
-  //c$('#msgbox').html(msg);
-  showMsg(msg, (type=='error')?'danger':'success');
-  c$('#msgbox').removeAttribute('class');
-  c$('#msgbox').setAttribute('class', type);
+  opt = {};
+  switch (type) {
+    case 'error':
+      typ = 'danger';
+      opt = {
+        placement: {
+          from: "bottom",
+          align: "right"
+        }
+      };
+      break;
+    default:
+      typ = type;
+  }
+  notify(msg, typ, opt);
 }
 window.authentication_complete = () => {
   if (lightdm.is_authenticated) {
     c$('#submit').attr('go', true);
     show_message('Access Granted', 'success');
-    try {
-      lightdm.start_session(data.session);
-    } catch (e) {
-      lightdm.login(data.selected_user, data.session);
-    }
+    setTimeout(() => {
+      try {
+        lightdm.start_session(data.session);
+      } catch (e) {
+        lightdm.login(data.selected_user, data.session);
+      }
+    }, 1000);
   } else {
     c$('#submit').attr('go', false);
     setTimeout(() => {
@@ -52,8 +65,12 @@ window.authentication_complete = () => {
 
 //Personal Functions
 function user_clicked(event) {
+  if ( event.target.getAttribute('uid') == data.selected_user ) {
+    notify("Already authenticating "+ getPack(data.selected_user).display_name, 'warning');
+  }
   if (lightdm.in_authentication) {
     lightdm.cancel_authentication();
+    data.selected_user = null;
   }
   authUser(event.target.getAttribute('uid'));
 }
@@ -65,7 +82,6 @@ function init() {
   //Set the image
   //Init the timer
   //Set Hostname
-  //Fade the display message
   //Init the Sessions
   //Init the user list
   initUsers();
@@ -143,9 +159,14 @@ function getPack(username) {
   }
 }
 function prepShoot() {
-  splash_notify = showMsg('Hello There, Preparing...', 'warning',{
+  splash_notify = notify('Hello There, Preparing...', 'warning',{
     showProgressbar: true,
-    delay: 4000
+    delay: 4000,
+    allow_dismiss: false,
+    placement: {
+      from: "top",
+      align: "center"
+    }
   });
   $('select').niceSelect();
   FastClick.attach(document.body);
@@ -172,12 +193,16 @@ function prepShoot() {
         message: "All set",
         type: "success"
       });
+      $("#loading").css('opacity', '0');
+      setTimeout(() => {
+        $("#loading").hide();
+      },1000);
     }, 4000);
   });
 }
 
-//function showMsg(msg='', type='info', options={}) {
-function showMsg(...args) {
+//function notify(msg='', type='info', options={}) {
+function notify(...args) {
   msg = ''; type = 'info'; options = {};
   if (args[0] && typeof args[0] === 'string') {
     msg = args[0];
@@ -198,10 +223,10 @@ function showMsg(...args) {
     delay: 2000,
     timer: 500,
     //showProgressbar: true,
-    //newest_on_top: true,
+    newest_on_top: true,
     animate: {
-      enter: 'animated '+((type=='danger')? 'flipInY' : 'boxIn'),
-      exit:  'animated '+((type=='danger')? 'flipOutX' : 'boxOut')
+      enter: 'animated '+((type=='danger')? 'flipInY' : 'bounceInDown'),
+      exit:  'animated '+((type=='danger')? 'flipOutX' : 'bounceOutUp')
     }
   }, options));
 }

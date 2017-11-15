@@ -16,6 +16,23 @@ body{
   overflow: hidden;
 }
 
+#loading {
+  background-color: #A2A2A2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: opacity 1s;
+  -webkit-transition: opacity 1s;
+}
+
+[data-notify="container"] {
+  width: 250px;
+  box-shadow: 0 0 10px 1px #BBBBBB;/*#BBC2B6;*/
+}
+
 [data-notify="progressbar"] { 
 	margin-bottom: 0px; 
 	position: absolute; 
