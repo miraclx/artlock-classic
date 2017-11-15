@@ -14,8 +14,9 @@ if (!('lightdm' in window)) {
   }
 } else {
   // DETECTED NATIVE
-}//LightDM callbacks
+}
 
+//LightDM callbacks
 window.show_prompt = (prompt, type) => {
   c$('#pass_entry').placeholder = prompt.replace(':', '');
   c$('#pass_entry').value = '';
@@ -23,10 +24,10 @@ window.show_prompt = (prompt, type) => {
     c$('#pass_entry').focus();
   }, 250);
   c$('#pass_entry').type = type;
-  // c$("#msgbox").html("","");
 }
 window.show_message = (msg, type) => {
-  c$('#msgbox').html(msg);
+  //c$('#msgbox').html(msg);
+  showMsg(msg, (type=='error')?'danger':'success');
   c$('#msgbox').removeAttribute('class');
   c$('#msgbox').setAttribute('class', type);
 }
@@ -47,21 +48,20 @@ window.authentication_complete = () => {
     show_message('Access Denied', 'error');
     authUser(data.selected_user);
   }
-}//Personal Functions
+}
 
+//Personal Functions
 function user_clicked(event) {
   if (lightdm.in_authentication) {
     lightdm.cancel_authentication();
   }
   authUser(event.target.getAttribute('uid'));
-  show_message('', '');
-  /*event.stopPropagation();*/
 }
 function respond(event) {
   lightdm.respond(c$('#pass_entry').value);
 }
 function init() {
-  importMods();
+  prepShoot();
   //Set the image
   //Init the timer
   //Set Hostname
@@ -142,14 +142,85 @@ function getPack(username) {
     }
   }
 }
-function importMods() {
-  // ON READY MODULES
-  $(document).ready(function () {
-    $('select').niceSelect();
-    FastClick.attach(document.body);
+function prepShoot() {
+  splash_notify = showMsg('Hello There, Preparing...', 'warning',{
+    showProgressbar: true,
+    delay: 4000
   });
-}/* FOR DEBUG ONLY */
+  $('select').niceSelect();
+  FastClick.attach(document.body);
+  setTimeout( () => {
+    splash_notify.update({
+      message: "Preparing plug-in's",
+    });
+  }, 1500);
+  setTimeout( () => {
+    splash_notify.update({
+      message: "Gathering Users",
+    });
+  }, 2200);
+  setTimeout( () => {
+    splash_notify.update({
+      message: "Applying User configurations",
+      type: "info"
+    });
+  }, 3000);
+  // ON READY MODULES
+  $(document).ready(() => {
+    setTimeout( () => {
+      splash_notify.update({
+        message: "All set",
+        type: "success"
+      });
+    }, 4000);
+  });
+}
+
+//function showMsg(msg='', type='info', options={}) {
+function showMsg(...args) {
+  msg = ''; type = 'info'; options = {};
+  if (args[0] && typeof args[0] === 'string') {
+    msg = args[0];
+  }
+  if (args[1] && typeof args[1] === 'string') {
+    type = args[1];
+  } else if (args[1] && typeof args[1] === 'object') {
+    options = args[1];
+  }
+  if (args[2] && typeof args[2] === 'object') {
+    options = args[2];
+  }
+  return $.notify({
+    title: "ArtanOS Lock",
+    message: msg
+  }, mixIn({
+    type: type,
+    delay: 2000,
+    timer: 500,
+    //showProgressbar: true,
+    //newest_on_top: true,
+    animate: {
+      enter: 'animated '+((type=='danger')? 'flipInY' : 'boxIn'),
+      exit:  'animated '+((type=='danger')? 'flipOutX' : 'boxOut')
+    }
+  }, options));
+}
+
+function mixIn( orig, other ) {
+  final = {};
+  for ( key in orig ) {
+    final[key] = orig[key];
+  }
+  for ( key in other ) {
+    final[key] = other[key];
+  }
+  return final;
+}
+
+/* FOR DEBUG ONLY */
 
 function showP() {
   alert(c$('html').html());
 }
+
+
