@@ -3,11 +3,12 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name='description' content='ArtanOS WebLock Classic'>
-    <meta name='author' content='Miraculous Owonubi'>
-    <meta name='viewport' content=' width=device-width, height=device-height, user-scalable=no'> <!-- 1366 * 768 -->
+    <meta name='Description' content='ArtanOS WebLock Classic'>
+    <meta name='Author' content='Miraculous Owonubi'>
+    <!-- <meta name='viewport' content=' width=device-width, height=device-height, user-scalable=no'> <!-- 1366 * 768 -->
 
     <script type="text/javascript" src="src/js/vendor/jquery.js"></script>
+    <script type="text/javascript" src="src/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="src/js/vendor/frost.js"></script>
     <script type="text/javascript" src="src/js/data.js"></script>
     <!-- mock.js is only required for local testing -->
@@ -15,11 +16,15 @@
     <script type="text/javascript" src="src/js/mock.js"></script>
     <script type="text/javascript" src="src/js/greeter.js"></script>
     <script type="text/javascript" src="src/js/vendor/jquery.nice-select.js"></script>
+    <script type="text/javascript" src="src/js/vendor/bootstrap-notify.js"></script>
     <script type="text/javascript" src="src/js/vendor/fastclick.js"></script>
+    <link rel="stylesheet" href="src/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="src/css/vendor/animate.css">
     <link rel="stylesheet" href="src/css/vendor/nice-select.css">
     <link rel="stylesheet" href="src/css/fonts.css">
     <link rel="stylesheet" href="src/css/style.css">
   </head>
+
   <body onload="init()">
     <div id="login_container">
       <form action="javascript: respond()">
@@ -41,3 +46,5 @@
     </div>
   </body>
 </html>
+
+
