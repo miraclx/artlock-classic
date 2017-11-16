@@ -145,7 +145,7 @@ function setTheme(theme) {
     $("#user_image").css("height", box.user_image_size);
   }
   if (box.user_image_radius) {
-    $("#user_image").css("border-radius", box.user_image_size);
+    $("#user_image").css("border-radius", box.user_image_radius);
   }
   if (box.submit_button_text) {
     $("#submit")[0].value = box.submit_button_text;
