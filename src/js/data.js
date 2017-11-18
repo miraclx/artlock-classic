@@ -41,5 +41,5 @@ window.themes = {
 }
 
 $(document).ready(function () {
-  setTheme("hatrick");
+  setTheme("default");
 });

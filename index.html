@@ -31,7 +31,8 @@
   </head>
 
   <body onload="init()">
-    <div id='loading'> </div>
+    <div class='blocker' id='loading'> </div>
+    <div class='blocker' id='powerLmtr'> </div>
     <div id="login_container">
       <form action="javascript: respond()">
         <span id="image_holder">
@@ -44,11 +45,28 @@
         </span>
         <input id="pass_entry" type="password"/> <br/>
         <input id="submit" type="submit" value="GO"/> <br/>
-        <span>
-          <!-- <a href="#">Use Pin</a> -->
-          <!-- <span id="msgbox"> </span> -->
-        </span>
       </form>
+    </div>
+    <div id="power">
+      <span id='tooltip-id'> </span>
+      <span class="power-fab power-btn-large" id="powerBtn">@</span>
+      <div class="power-menu">
+        <span tooltip="Restart" action='lightdm.restart()'>
+          <a class="power-fab power-btn-sm power-btn-restart scale-transition scale-out">{-}</a>
+        </span>
+        <span tooltip="Hibernate" action='lightdm.suspend()'>
+          <a class="power-fab power-btn-sm power-btn-hibernate scale-transition scale-out">{@}</a>
+        </span>
+        <span tooltip="Shutdown" action='lightdm.shutdown()'>
+          <a class="power-fab power-btn-sm power-btn-shutdown scale-transition scale-out">{@}</a>
+        </span>
+      </div>
+      <div class="power-card scale-transition scale-out">
+        <div id="power-confirm">
+          <span> Are You Sure ? </span>
+          <a id="power-yes"> Yes </a>
+        </div>
+      </div>
     </div>
   </body>
 </html>

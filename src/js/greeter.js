@@ -33,7 +33,7 @@ window.show_message = (msg, type) => {
       opt = {
         placement: {
           from: "bottom",
-          align: "right"
+          align: "left"
         }
       };
       break;
@@ -193,6 +193,7 @@ function prepShoot() {
         message: "All set",
         type: "success"
       });
+      initFPB();
       $("#loading").css('opacity', '0');
       setTimeout(() => {
         $("#loading").hide();
@@ -201,7 +202,6 @@ function prepShoot() {
   });
 }
 
-//function notify(msg='', type='info', options={}) {
 function notify(...args) {
   msg = ''; type = 'info'; options = {};
   if (args[0] && typeof args[0] === 'string') {
@@ -242,10 +242,54 @@ function mixIn( orig, other ) {
   return final;
 }
 
+function initFPB() {
+  function toggleMenu() {
+    $('.power-btn-sm').toggleClass('scale-out');
+    if (!$('.power-card').hasClass('scale-out')) {
+      $('.power-card').toggleClass('scale-out');
+    }
+  }
+  function toggleLmtr() {
+    if ( $("#powerLmtr").is(":visible") ) {
+      $("#powerLmtr, #tooltip-id").hide();
+    } else {
+      $("#powerLmtr").show();
+    }
+  }
+  $('#powerBtn, #powerLmtr').click(function() {
+    toggleMenu();
+    toggleLmtr();
+  });
+  $('.power-btn-sm').click(function() {
+    var btn = $(this);
+    var card = $('.power-card');
+
+    if ($('.power-card').hasClass('scale-out')) {
+      $('.power-card').toggleClass('scale-out');
+    }
+    if (btn.hasClass('power-btn-shutdown')) {
+      card.css('background-color', '#d32f2f');
+    } else if (btn.hasClass('power-btn-hibernate')) {
+      card.css('background-color', '#fbc02d');
+    } else if (btn.hasClass('power-btn-restart')) {
+      card.css('background-color', '#388e3c');
+    }
+    $('#power-yes')[0].onclick = (function () {
+      eval(btn.parent().attr('action'));
+    });
+  });
+  $('[tooltip]').hover(function (evt) {
+    $('#tooltip-id')
+      .html(evt.currentTarget.getAttribute('tooltip') )
+      .css('left', (evt.clientX-130*2)+'px')
+      .show();
+  });
+}
+
 /* FOR DEBUG ONLY */
 
-function showP() {
-  alert(c$('html').html());
+function showP(tag='html') {
+  alert(c$(tag).html());
 }
 
 
