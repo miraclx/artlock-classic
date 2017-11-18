@@ -218,8 +218,14 @@ lightdmMock.prototype.hibernate = function() {
     if(!this.can_hibernate)
         throw new IlligalUsageException("LightDM cannot hibernate the system. Make sure you check the value of 'lightdm.can_hibernate' before calling this function.");
 
-    window.alert("System Status: [Hibernated. Bye Bye]");
-    document.location.reload(true);
+    window.show_message("System Status:\n[Hibernating]");
+    this.window_reload();
+};
+
+lightdmMock.prototype.window_reload = function () {
+    setTimeout(() => {
+      document.location.reload(true);
+    }, 2000);
 };
 
 /**
@@ -257,8 +263,8 @@ lightdmMock.prototype.restart = function() {
     if(!this.can_restart)
         throw new IlligalUsageException("LightDM cannot restart the system. Make sure you check the value of 'lightdm.can_restart' before calling this function.");
 
-    window.alert("System Status: [Restarting. Bye Bye]");
-    document.location.reload(true);
+    window.show_message("System Status:\n[Restarting]");
+    this.window_reload();
 };
 
 /**
@@ -282,8 +288,8 @@ lightdmMock.prototype.shutdown = function() {
     if(!this.can_shutdown)
         throw new IlligalUsageException("LightDM cannot shut down the system. Make sure you check the value of 'lightdm.can_shutdown' before calling this function.");
 
-    window.alert("System Status: [Shutdown. Bye Bye]");
-    document.location.reload(true);
+    window.show_message("System Status:\n[Shutting Down]");
+    this.window_reload();
 };
 
 /**
@@ -319,8 +325,8 @@ lightdmMock.prototype.suspend = function() {
     if(!this.can_suspend)
         throw new IlligalUsageException("LightDM cannot suspend the system. Make sure you check the value of 'lightdm.can_suspend' before calling this function.");
 
-    window.alert("System Status: [Suspended. Bye Bye]");
-    document.location.reload(true);
+    window.show_message("System Status:\n[Suspending]");
+    this.window_reload();
 };
 
 

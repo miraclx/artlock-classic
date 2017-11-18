@@ -17,7 +17,7 @@ if (!('lightdm' in window)) {
 }
 
 //LightDM callbacks
-window.show_prompt = (prompt, type) => {
+window.show_prompt = (prompt, type='password') => {
   c$('#pass_entry').placeholder = prompt.replace(':', '');
   c$('#pass_entry').value = '';
   setTimeout(() => {
@@ -25,7 +25,7 @@ window.show_prompt = (prompt, type) => {
   }, 250);
   c$('#pass_entry').type = type;
 }
-window.show_message = (msg, type) => {
+window.show_message = (msg, type='info') => {
   opt = {};
   switch (type) {
     case 'error':
@@ -251,7 +251,7 @@ function initFPB() {
   }
   function toggleLmtr() {
     if ( $("#powerLmtr").is(":visible") ) {
-      $("#powerLmtr, #tooltip-id").hide();
+      $("#powerLmtr").hide();
     } else {
       $("#powerLmtr").show();
     }
@@ -283,6 +283,9 @@ function initFPB() {
       .html(evt.currentTarget.getAttribute('tooltip') )
       .css('left', (evt.clientX-130*2)+'px')
       .show();
+    $("*:not('#tooltip-id')").click(function () {
+      $('#tooltip-id').hide();
+    });
   });
 }
 
