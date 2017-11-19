@@ -22,7 +22,8 @@
     <script type="text/javascript" src="src/js/greeter.js"></script>
     <!-- Style Sheets -->
     <!-- Vendor Sheets -->
-    <link rel="stylesheet" href="src/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="src/css/vendor/Flaticon/flaticon.css">
+    <link rel="stylesheet" href="src/css/vendor/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="src/css/vendor/animate.css">
     <link rel="stylesheet" href="src/css/vendor/nice-select.css">
     <!-- Local Sheets -->
@@ -40,7 +41,7 @@
         </span>
         <span id="user_name_box">
           <select id="user_names" class="user_selector wide">
-            <option id="username_template"> --- </option>
+            <option id="username_template"> --- <i class="logged flaticon-locked"> </i> </option>
           </select>
         </span>
         <input id="pass_entry" type="password"/> <br/>
@@ -49,16 +50,16 @@
     </div>
     <div id="power">
       <span id='tooltip-id'> </span>
-      <span class="power-fab power-btn-large" id="powerBtn">@</span>
+      <span class="flaticon-apps power-fab power-btn-large" id="powerBtn"></span>
       <div class="power-menu">
         <span tooltip="Restart" action='lightdm.restart()'>
-          <a class="power-fab power-btn-sm power-btn-restart scale-transition scale-out">{-}</a>
+          <i class="power-fab power-btn-sm power-btn-restart scale-transition scale-out flaticon-left-arrow"></i>
         </span>
         <span tooltip="Hibernate" action='lightdm.suspend()'>
-          <a class="power-fab power-btn-sm power-btn-hibernate scale-transition scale-out">{@}</a>
+          <i class="power-fab power-btn-sm power-btn-hibernate scale-transition scale-out flaticon-line"></i>
         </span>
         <span tooltip="Shutdown" action='lightdm.shutdown()'>
-          <a class="power-fab power-btn-sm power-btn-shutdown scale-transition scale-out">{@}</a>
+          <i class="power-fab power-btn-sm power-btn-shutdown scale-transition scale-out flaticon-power-button"></i>
         </span>
       </div>
       <div class="power-card scale-transition scale-out">

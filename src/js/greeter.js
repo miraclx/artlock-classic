@@ -87,24 +87,23 @@ function init() {
   initUsers();
 }
 function initUsers() {
-  var name_template = c$('#username_template');
-  var name_parent = name_template.parentElement;
-  name_parent.removeChild(name_template);
+  var name_template = $('#username_template');
+  var name_parent = name_template.parent();
+  name_template.remove();
   for (var i = 0; i < lightdm.users.length; i++) {
     selected_user = lightdm.users[i];
-    userNode = name_template.cloneNode(true);
-    c$(userNode).html(((!selected_user.logged_in)
+    userNode = name_template.clone();
+    $(userNode).html( ((!selected_user.logged_in)
     ? selected_user.display_name
     : selected_user.display_name + ' (Logged in)')
     );
     if (selected_user.logged_in) {
       ++active_users;
     }    // Implement the trial count
-
-    userNode.id = selected_user.username;
-    userNode.onclick = user_clicked;
-    userNode.session = (selected_user.session) ? selected_user.session : lightdm.default_session;
-    name_parent.appendChild(userNode);
+    userNode.attr('id', selected_user.username);
+    userNode[0].onclick = user_clicked;
+    userNode.attr('session', (selected_user.session) ? selected_user.session : lightdm.default_session);
+    name_parent.append(userNode);
   }
   $('select').niceSelect('update');
   authUser(lightdm.users[0].username);

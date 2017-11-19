@@ -6,7 +6,7 @@ Based on Antergos' Webkit2 Greeter
 [**DEMO HERE**](https://miraclx.github.io/artLock-classic)
 
 ### Features
-> Slick UI
+> Sleek UI
 > Nice Selector
 > Bootstrap Notify
 > Frosted Glass
