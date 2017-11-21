@@ -1,22 +1,41 @@
 # artlock-classic
+
+[![forthebadge](http://forthebadge.com/images/badges/check-it-out.svg)](http://forthebadge.com)
+[![forthebadge](http://forthebadge.com/images/badges/uses-html.svg)](http://forthebadge.com) [![forthebadge](http://forthebadge.com/images/badges/uses-css.svg)](http://forthebadge.com)
+[![forthebadge](http://forthebadge.com/images/badges/uses-js.svg)](http://forthebadge.com)
 The ArtanOS Classic Lock Screen
 Based on Antergos' Webkit2 Greeter
 
-[![Pipeline Status](https://gitlab.com/artifixinc/artanos/artlock/ArtLock-Classic/badges/master/pipeline.svg)](https://gitlab.com/artifixinc/artanos/artlock/ArtLock-Classic/commits/master)
-[**DEMO HERE**](https://miraclx.github.io/artLock-classic)
+[![Pipeline Status](https://gitlab.com/artifixinc/artlock-classic/badges/master/pipeline.svg)](https://gitlab.com/artifixinc/artlock-classic/commits/master)
+[![forthebadge](http://forthebadge.com/images/badges/for-you.svg)](http://forthebadge.com)
+[![forthebadge](http://forthebadge.com/images/badges/you-didnt-ask-for-this.svg)](http://forthebadge.com)
+[**DEMO HERE**(1)](https://miraclx.github.io/artlock-classic)
+[**DEMO HERE**(2)](https://artifixinc.gitlab.io/artlock-classic)
 
 ### Features
-> Sleek UI
-> Nice Selector
-> Bootstrap Notify
-> Frosted Glass
+* Sleek UI
+* Nice Selector
+* Bootstrap Notify
+* Frosted Glass
 
-### Installing
-1. Download ArtLock's stable version here
-2. Extract the zip and pop a terminal window in the folder extracted to
-3. Type 
+### Installation
+1. Download ArtLock's stable version [here]()
+2. Set [lightdm] as your Display manager.
+3. Install [lightdm-webkit2-greeter] from the AUR.
+4. In the directory of the downloaded file in (1), Type:
     ```sh
     chmod +x ./install.sh
     sudo ./install.sh
     ```
-4. Answer all questions appropriately 😃😉
+    This is going to
+    1. Make sure you have both lightdm and lightdm-webkit2-greeter installed.
+    2. Set lightdm-webkit2-greeter as lightdm's greeter-session
+    3. Install artlock-classic
+    4. Configure lightdm-webkit2-greeter to use artlock-classic
+    5. Clear up..That's all.
+5. REBOOT AND ENJOY 😃😉
+6. (_OPTIONAL_) Submit reviews
+7. (_OPTIONAL_) Donate [here]()
+
+
+[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
