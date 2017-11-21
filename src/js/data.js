@@ -1,13 +1,11 @@
 /*
-
-       ###-- src/js/modify.js --###
-  ArtanOS Lockscreen! based on Miraclx's Frost.JS library,
-  version 3.5 ©2017 Miraculous Owonubi
-  This file is a part of ArtanOS's Lockscreen Project
+       $#__ data.js __#$
+  Version 1.0 © 2017 Miraculous Owonubi <omiraculous@gmail.com>
+  This file is a part of The ArtanOS WebLock Project
   Do not copy or redistribute code!, except on granted permissions!
   Do not edit if not a certified Artifix Personel!
-
 */
+
 window.data = {
   'show_logger'             :  false,
   'logger_color'            :  'blue',
@@ -26,14 +24,14 @@ window.data = {
 window.themes = {
   default:  {
     "font"                : "Maven",
-    "container_radius"    : "8px",
+    "container_radius"    : "16px",
     "user_image_size"     : "100px",
     "user_image_radius"   : "100%",
     "submit_button_text"  : "GO"
   },
   hatrick:  {
     "font"                : "Dosis",
-    "container_radius"    : "16px",
+    "container_radius"    : "8px",
     "user_image_size"     : "120px",
     "user_image_radius"   : "30%",
     "submit_button_text"  : "SIGN IN"

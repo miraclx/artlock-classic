@@ -1,3 +1,11 @@
+/*
+       $#__ mockdata.js __#$
+  Version 1.0 © 2017 Miraculous Owonubi <omiraculous@gmail.com>
+  This file is a part of The ArtanOS WebLock Project
+  Do not copy or redistribute code!, except on granted permissions!
+  Do not edit if not a certified Artifix Personel!
+*/
+
 window.mockData = {
 	        "users"    :  [{
               "display_name"   : "Alexis",
