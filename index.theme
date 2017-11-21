@@ -1,0 +1,6 @@
+[theme]
+name=artlock-classic
+description=ArtanOS Log In Screen
+engine=lightdm-webkit2-greeter
+url=index.html
+session=artui
