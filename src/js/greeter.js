@@ -1,6 +1,11 @@
 /*
-   ArtanOS WebLock
+       $#__ greeter.js __#$
+  Version 1.0 © 2017 Miraculous Owonubi <omiraculous@gmail.com>
+  This file is a part of The ArtanOS WebLock Project
+  Do not copy or redistribute code!, except on granted permissions!
+  Do not edit if not a certified Artifix Personel!
 */
+
 c$().Title('ArtLock Classic');
 var active_users = 0;
 if (!('lightdm' in window)) {
@@ -99,7 +104,8 @@ function initUsers() {
     );
     if (selected_user.logged_in) {
       ++active_users;
-    }    // Implement the trial count
+    }
+    // Implement the trial count
     userNode.attr('id', selected_user.username);
     userNode[0].onclick = user_clicked;
     userNode.attr('session', (selected_user.session) ? selected_user.session : lightdm.default_session);
@@ -273,19 +279,20 @@ function initFPB() {
     } else if (btn.hasClass('power-btn-restart')) {
       card.css('background-color', '#388e3c');
     }
-    $('#power-yes')[0].onclick = (function () {
+    $('#power-yes')[0].onclick = function () {
       eval(btn.parent().attr('action'));
-    });
+    };
   });
   $('[tooltip]').hover(function (evt) {
-    $('#tooltip-id')
-      .html(evt.currentTarget.getAttribute('tooltip') )
-      .css('left', (evt.clientX-130*2)+'px')
+    $('#tooltip-box')
+      .html('')
+      .html( evt.currentTarget.getAttribute('tooltip') )
+      .css('left', (evt.clientX-20)+'px')
       .show();
-    $("*:not('#tooltip-id')").click(function () {
-      $('#tooltip-id').hide();
+    $("*:not('#tooltip-box')").click(function () {
+      $('#tooltip-box').hide();
     });
-  });
+  }, () => {});
 }
 
 /* FOR DEBUG ONLY */
