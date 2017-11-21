@@ -1,7 +1,15 @@
+/*
+       $#__ style.css __#$
+  Version 1.0 © 2017 Miraculous Owonubi <omiraculous@gmail.com>
+  This file is a part of The ArtanOS WebLock Project
+  Do not copy or redistribute code!, except on granted permissions!
+  Do not edit if not a certified Artifix Personel!
+*/
+
 *{
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: Maven;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -72,6 +80,7 @@ body{
   bottom: 0;
   right: 0;
   background: inherit;
+  /* background: rgba(255, 255, 255, 0.2); */
   box-shadow: inset 0 0 0 200px rgba(255,255,255,0.2);
   filter: blur(10px) saturate(1.7);
   -webkit-filter: blur(10px) saturate(1.7);
@@ -101,7 +110,7 @@ button:focus {
 }
 
 a {
-  text-decoration:none;
+  text-decoration: none;
 }
 
 input, .user_selector {
@@ -247,8 +256,6 @@ input[type="submit"]:hover {
   position: absolute;
   right: 10%;
   bottom: 120%;
-  -webkit-transition: background 5s;
-          transition: background 5s;
   padding: 24px;
   width: 200px;
   border-radius: 2px;
@@ -278,14 +285,14 @@ input[type="submit"]:hover {
   display: none;
 }
 
-#tooltip-id {
-  position: absolute;
+#tooltip-box {
+  position: fixed;
   background: #3A3A3A;
   color: white;
   text-align: center;
   padding: 5px 7px 5px 7px;
   border-radius: 6px;
-  bottom: -20px;
+  bottom: 20px;
   display: none;
 }
 
