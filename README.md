@@ -17,7 +17,7 @@ Based on Antergos' Webkit2 Greeter
 - Frosted Glass
 
 ### Installation
-1. Download ArtLock's stable version [here]()
+1. Download ArtLock's stable version [here](https://gitlab.com/artifixinc/artlock-classic/repository/master/archive.zip)
 2. Set [lightdm] as your Display manager.
 3. Install [lightdm-webkit2-greeter] from the AUR.
 4. In the directory of the downloaded file in (1), Type;
