@@ -285,10 +285,6 @@ input[type="submit"]:hover {
   background-color: #FF344C;
 }
 
-[tooltip] {
-  display: none;
-}
-
 #tooltip-box {
   position: fixed;
   background: #3A3A3A;
