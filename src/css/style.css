@@ -18,7 +18,7 @@
 
 body{
   height: 100vh;
-  background: url('../img/backgrounds/default.png') fixed no-repeat;
+  background: url('../img/backgrounds/default.jpg') fixed no-repeat;
   background-size: cover;
   overflow: hidden;
 }
