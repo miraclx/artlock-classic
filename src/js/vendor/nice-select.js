@@ -78,7 +78,7 @@
         $dropdown.find('ul').append($('<li></li>')
           .attr('data-value', $option.val())
           .attr('data-display', (display || null))
-          .on("click", $option.onclick)
+          .on("click", $option[0].onclick)
           .addClass('option' +
             ($option.is(':selected') ? ' selected' : '') +
             ($option.is(':disabled') ? ' disabled' : ''))

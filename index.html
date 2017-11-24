@@ -10,6 +10,7 @@
 
 <html>
   <head>
+    <title>ArtLock Classic</title>
     <meta charset="utf-8">
     <meta name='Description' content='ArtanOS WebLock Classic'>
     <meta name='Author' content='Miraculous Owonubi'>
@@ -18,7 +19,7 @@
     <!-- Vendor Libraries -->
     <script type="text/javascript" src="src/js/vendor/jquery.js"></script>
     <script type="text/javascript" src="src/js/vendor/bootstrap.min.js"></script>
-    <script type="text/javascript" src="src/js/vendor/jquery.nice-select.js"></script>
+    <script type="text/javascript" src="src/js/vendor/nice-select.js"></script>
     <script type="text/javascript" src="src/js/vendor/bootstrap-notify.js"></script>
     <script type="text/javascript" src="src/js/vendor/fastclick.js"></script>
     <script type="text/javascript" src="src/js/vendor/frost.js"></script>
@@ -41,14 +42,13 @@
 
   <body onload="init()">
     <div class='blocker' id='loading'> </div>
-    <div class='blocker' id='powerLmtr'> </div>
     <div id="login_container">
       <form action="javascript: respond()">
         <span id="image_holder">
-          <img id="user_image" src="src/img/avatar/default.jpg"/> <br/>
+          <img id="user_image" src="src/img/avatar/default.jpg" tooltip='User Image'/> <br/>
         </span>
         <span id="user_name_box">
-          <select id="user_names" class="user_selector wide">
+          <select id="user_names" class="user_selector wide" tooltip='Select a user'>
             <option id="username_template"> --- <i class="logged flaticon-locked"> </i> </option>
           </select>
         </span>
@@ -56,9 +56,9 @@
         <input id="submit" type="submit" value="GO"/> <br/>
       </form>
     </div>
+    <span id='tooltip-box'> </span>
     <div class='blocker' id='powerLmtr'> </div>
-    <div id="power">
-      <span id='tooltip-box'> </span>
+    <div id="power" tooltip="Power">
       <span class="flaticon-apps power-fab power-btn-large" id="powerBtn"></span>
       <div class="power-menu">
         <span action='lightdm.restart()'>
@@ -80,5 +80,3 @@
     </div>
   </body>
 </html>
-
-
