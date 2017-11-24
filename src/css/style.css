@@ -44,9 +44,8 @@ body{
 }
 
 [data-notify="container"] {
-  border-left: 5px solid;
+  border-left: 3px solid;
   width: 250px;
- /* box-shadow: 0 0 10px 1px #BBBBBB;/*#BBC2B6;*/
 }
 
 [data-notify="progressbar"] { 
