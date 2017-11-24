@@ -6,7 +6,6 @@
   Do not edit if not a certified Artifix Personel!
 */
 
-c$().Title('ArtLock Classic');
 var active_users = 0;
 if (!('lightdm' in window)) {
   try {
@@ -23,12 +22,12 @@ if (!('lightdm' in window)) {
 
 //LightDM callbacks
 window.show_prompt = (prompt, type='password') => {
-  c$('#pass_entry').placeholder = prompt.replace(':', '');
-  c$('#pass_entry').value = '';
+  $('#pass_entry').attr('placeholder', prompt.replace(':', ''));
+  $('#pass_entry').val('');
   setTimeout(() => {
-    c$('#pass_entry').focus();
+    $('#pass_entry').focus();
   }, 250);
-  c$('#pass_entry').type = type;
+  $('#pass_entry').attr('type', type);
 }
 window.show_message = (msg, type='info') => {
   opt = {};
@@ -49,7 +48,7 @@ window.show_message = (msg, type='info') => {
 }
 window.authentication_complete = () => {
   if (lightdm.is_authenticated) {
-    c$('#submit').attr('go', true);
+    $('#submit').attr('go', true);
     show_message('Access Granted', 'success');
     setTimeout(() => {
       try {
@@ -59,9 +58,9 @@ window.authentication_complete = () => {
       }
     }, 1000);
   } else {
-    c$('#submit').attr('go', false);
+    $('#submit').attr('go', false);
     setTimeout(() => {
-      c$('#submit').attr('go', '');
+      $('#submit').attr('go', '');
     }, 2000);
     show_message('Access Denied', 'error');
     authUser(data.selected_user);
@@ -70,17 +69,17 @@ window.authentication_complete = () => {
 
 //Personal Functions
 function user_clicked(event) {
-  if ( event.target.getAttribute('uid') == data.selected_user ) {
+  if ( event.target.getAttribute('id') == data.selected_user ) {
     notify("Already authenticating "+ getPack(data.selected_user).display_name, 'warning');
   }
   if (lightdm.in_authentication) {
     lightdm.cancel_authentication();
     data.selected_user = null;
   }
-  authUser(event.target.getAttribute('uid'));
+  authUser(event.target.getAttribute('id'));
 }
 function respond(event) {
-  lightdm.respond(c$('#pass_entry').value);
+  lightdm.respond($('#pass_entry').val());
 }
 function init() {
   prepShoot();
@@ -92,15 +91,16 @@ function init() {
   initUsers();
 }
 function initUsers() {
-  var name_template = $('#username_template');
-  var name_parent = name_template.parent();
-  name_template.remove();
+  var $name_template = $('#username_template');
+  var $name_parent = $name_template.parent();
+  $name_template.remove();
   for (var i = 0; i < lightdm.users.length; i++) {
     selected_user = lightdm.users[i];
-    userNode = name_template.clone();
+    userNode = $name_template.clone();
+    dispName = selected_user.display_name;
     $(userNode).html( ((!selected_user.logged_in)
-    ? selected_user.display_name
-    : selected_user.display_name + ' (Logged in)')
+    ? c$().reduce(15, dispName)
+    : c$().reduce(14, dispName)+ ' •')
     );
     if (selected_user.logged_in) {
       ++active_users;
@@ -109,30 +109,30 @@ function initUsers() {
     userNode.attr('id', selected_user.username);
     userNode[0].onclick = user_clicked;
     userNode.attr('session', (selected_user.session) ? selected_user.session : lightdm.default_session);
-    name_parent.append(userNode);
+    $name_parent.append(userNode);
   }
   $('select').niceSelect('update');
   authUser(lightdm.users[0].username);
 }
 function setUserImage(user, box) {
-  if (box.getAttribute('rpath') != user.image) {
+  if (box.attr('rpath') != user.image) {
     $('#user_image').fadeOut(250, () => {
       if (user.image) {
-        box.src = user.image;
-        box.setAttribute('rpath', user.image);
-        box.onerror = () => {
-          box.src = 'src/img/avatar/default.jpg';
-        }
+        box.attr('src', user.image);
+        box.attr('rpath', user.image);
+        box.on('error', () => {
+          box.attr('src', 'src/img/avatar/default.png');
+        });
       } else {
-        box.src = 'src/img/avatars/default.jpg';
+        box.attr('src', 'src/img/avatars/default.png');
       }
     }).fadeIn(250);
   }
 }
 function authUser(user) {
   data.selected_user = user;
-  data.session = c$("#"+user).session;
-  setUserImage(getPack(user), c$('#user_image'));
+  data.session = $("#"+user).attr('session');
+  setUserImage(getPack(user), $('#user_image'));
   if (user) {
     lightdm.authenticate(user);
   }
@@ -284,10 +284,11 @@ function initFPB() {
     };
   });
   $('[tooltip]').hover(function (evt) {
+    ordin8 = getCoord( evt.currentTarget, 'top', 'left' );
     $('#tooltip-box')
-      .html('')
-      .html( evt.currentTarget.getAttribute('tooltip') )
-      .css('left', (evt.clientX-20)+'px')
+      .html( $(evt.currentTarget).attr('tooltip') )
+      .css('left', (ordin8.left)+'px')
+      .css('top', (ordin8.top+$(evt.currentTarget).outerHeight())+'px')
       .show();
     $("*:not('#tooltip-box')").click(function () {
       $('#tooltip-box').hide();
@@ -295,10 +296,25 @@ function initFPB() {
   }, () => {});
 }
 
+function getCoord(el, ...direction) {
+  function get(el, pos) {
+    var scrollTop     = $(window).scrollTop(),
+        elementOffset = $(el).offset()[pos];
+    return (elementOffset - scrollTop);
+  }
+  if (direction.length > 1) {
+    res = {};
+    for (i = 0; i < direction.length; i++ ) {
+      res[direction[i]] = get( el, direction[i] );
+    }
+  } else {
+    res = get( el, distance[0] );
+  }
+  return res;
+}
+
 /* FOR DEBUG ONLY */
 
 function showP(tag='html') {
-  alert(c$(tag).html());
+  alert($(tag).html());
 }
-
-
