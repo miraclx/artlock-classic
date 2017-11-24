@@ -1,6 +1,8 @@
 /*  jQuery Nice Select - v1.1.0
     https://github.com/hernansartorio/jquery-nice-select
-    Made by Hernán Sartorio  */
+    Made by Hernán Sartorio 
+    Modified, Miraculous Owonubi <omiraculous@gmail.com>
+*/
  
 (function($) {
 
@@ -76,12 +78,19 @@
         $dropdown.find('ul').append($('<li></li>')
           .attr('data-value', $option.val())
           .attr('data-display', (display || null))
-          .attr("uid", this.id)
-          .on("click", this.onclick)
+          .on("click", $option.onclick)
           .addClass('option' +
             ($option.is(':selected') ? ' selected' : '') +
             ($option.is(':disabled') ? ' disabled' : ''))
           .html($option.text())
+          .each(function() { 
+            that = this;
+            $.each($option.prop('attributes'), function() { 
+              if(this.specified) {
+                $(that).attr(this.name, this.value);
+              }
+            });
+          })
         );
       });
     }
