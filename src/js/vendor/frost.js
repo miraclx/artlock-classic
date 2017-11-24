@@ -112,7 +112,8 @@ window.ice = (function () {
       if (nxt_white_sp < 0 || nxt_white_sp == 0 || nxt_white_sp > limit) nxt_white_sp = limit;
       if (syntax.length > limit) {
         for (_red_ = 0; _red_ <= nxt_white_sp; _red_++)
-        ret += syntax[_red_];
+          ret += syntax[_red_];
+        ret += '...';
       } else {
         ret = syntax;
       }
