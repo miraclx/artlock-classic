@@ -227,7 +227,6 @@ function notify(...args) {
     type: type,
     delay: 2000,
     timer: 500,
-    //showProgressbar: true,
     newest_on_top: true,
     animate: {
       enter: 'animated '+((type=='danger')? 'flipInY' : 'bounceInDown'),
