@@ -41,6 +41,9 @@ window.show_message = (msg,type='info') => {
         align: "left"
       }
     };
+    attr = {
+      icon: "fa fa-exclamation-circle"
+    };
     break;
   case 'warning':
     attr = {
