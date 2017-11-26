@@ -243,31 +243,45 @@ function prepShoot() {
   });
 }
 
-function notify(...args) {
-  msg = ''; type = 'info'; options = {};
+function notify(msg='', ...args) {
+  var type = 'info', attr = {}, options = {};
   if (args[0] && typeof args[0] === 'string') {
-    msg = args[0];
+    type = args[0];
+  } else if (args[0] && typeof args[0] === 'object') {
+    attr = args[0];
   }
-  if (args[1] && typeof args[1] === 'string') {
-    type = args[1];
-  } else if (args[1] && typeof args[1] === 'object') {
+  if (args[1] && typeof args[1] === 'object') {
     options = args[1];
   }
-  if (args[2] && typeof args[2] === 'object') {
-    options = args[2];
-  }
-  return $.notify({
+  return $.notify(
+  mixIn({
+    message: msg,
     title: "ArtanOS Lock",
-    message: msg
-  }, mixIn({
+    icon: "fa fa-bell"
+  }, attr),
+  mixIn({
     type: type,
+    newest_on_top: true,
+    z_index: 11,
     delay: 2000,
     timer: 500,
-    newest_on_top: true,
     animate: {
       enter: 'animated '+((type=='danger')? 'flipInY' : 'bounceInDown'),
       exit:  'animated '+((type=='danger')? 'flipOutX' : 'bounceOutUp')
-    }
+    },
+    template: '\
+    <div data-notify="container" class="col-xs-11 col-sm-4 alert alert-{0}" role="alert">\
+      <button type="button" aria-hidden="true" class="close" data-notify="dismiss">&times;</button>\
+      <span data-notify="icon"></span>\
+      <span data-notify="title">\
+        <b>{1}</b>\
+      </span> <br />\
+      <span data-notify="message">{2}</span>\
+      <div class="progress" data-notify="progressbar">\
+         <div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>\
+      </div>\
+      <a href="{3}" target="{4}" data-notify="url"></a>\
+    </div>'
   }, options));
 }
 
