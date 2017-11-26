@@ -30,21 +30,35 @@ window.show_prompt = (prompt, type='password') => {
   $('#pass_entry').attr('type', type);
 }
 window.show_message = (msg, type='info') => {
-  opt = {};
+  opts = {};
   switch (type) {
     case 'error':
-      typ = 'danger';
-      opt = {
+      type = 'danger';
+      opts = {
         placement: {
           from: "bottom",
           align: "left"
         }
       };
       break;
-    default:
-      typ = type;
+    case 'warning':
+      attr = {
+        icon: 'fa fa-bell-o'
+      }
+      break;
+    case 'success':
+      attr = {
+        icon: 'fa fa-unlock'
+      }
+      break;
   }
-  notify(msg, typ, opt);
+  console.log(typeof attr == "undefined");
+  if (typeof attr != "undefined") {
+    opts = mixIn(opts, { type: type } );
+  } else {
+    attr = type;
+  }
+  notify(msg, attr, opts);
 }
 window.authentication_complete = () => {
   if (lightdm.is_authenticated) {
