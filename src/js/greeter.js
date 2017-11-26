@@ -53,7 +53,6 @@ window.show_message = (msg,type='info') => {
     }
     break;
   }
-  console.log(typeof attr == "undefined");
   if (typeof attr != "undefined") {
     opts = mixIn(opts, {
       type: type
