@@ -234,6 +234,7 @@ function prepShoot() {
         type: "success"
       });
       initFPB();
+      initTooltip();
       $("#loading").css('opacity', '0');
       setTimeout(() => {
         $("#loading").hide();
@@ -317,23 +318,32 @@ function initFPB() {
       eval(btn.parent().attr('action'));
     };
   });
+}
+
+function initTooltip() {
   $('[tooltip]').hover(function (evt) {
     ordin8 = getCoord( evt.currentTarget, 'top', 'left' );
-    $('#tooltip-box')
-      .html( $(evt.currentTarget).attr('tooltip') )
-      .css('left', (ordin8.left)+'px')
-      .css('top', (ordin8.top+$(evt.currentTarget).outerHeight())+'px')
-      .show();
-    $("*:not('#tooltip-box')").click(function () {
-      $('#tooltip-box').hide();
+    $that = $(evt.currentTarget);
+    tooltip = $that.attr('tooltip');
+    display_text = forMatr(tooltip, {
+      '%html': $that.html(),
+      '%text': $that.text(),
+      '%id': $that.attr('id')
     });
-  }, () => {});
+    $('#tooltip-box')
+      .html( display_text )
+      .css('left', (ordin8.left)+'px')
+      .css('top', (ordin8.top+$that.outerHeight())+'px')
+      .show();
+  }, function () {
+    $('#tooltip-box').hide();
+  });
 }
 
 function getCoord(el, ...direction) {
   function get(el, pos) {
     var scrollTop     = $(window).scrollTop(),
-        elementOffset = $(el).offset()[pos];
+    elementOffset = $(el).offset()[pos];
     return (elementOffset - scrollTop);
   }
   if (direction.length > 1) {
