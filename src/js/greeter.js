@@ -366,7 +366,7 @@ function getCoord(el, ...direction) {
       res[direction[i]] = get( el, direction[i] );
     }
   } else {
-    res = get( el, distance[0] );
+    res = get( el, direction[0] );
   }
   return res;
 }
