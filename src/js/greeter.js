@@ -96,13 +96,17 @@ function respond(event) {
   lightdm.respond($('#pass_entry').val());
 }
 function init() {
-  prepShoot();
-  //Set the image
-  //Init the timer
-  //Set Hostname
-  //Init the Sessions
-  //Init the user list
-  initUsers();
+  try {
+    prepShoot();
+    //Set the image
+    //Init the timer
+    //Set Hostname
+    //Init the Sessions
+    //Init the user list
+    initUsers();
+  } catch (exception) {
+    console.error('Error: \n'+exception);
+  }
 }
 function initUsers() {
   var $name_template = $('#username_template');
