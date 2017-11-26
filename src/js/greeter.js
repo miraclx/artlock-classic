@@ -371,6 +371,20 @@ function getCoord(el, ...direction) {
   return res;
 }
 
+function forMatr(txt, ...format) {
+  if ( format.length == 1 && typeof format[0] === 'object' ) {
+    dict = format[0];
+    for ( i in dict ) {
+      txt = txt.replace(i, dict[i]);
+    }
+  } else if (typeof format[0] === 'string' && typeof format[1] === 'string') {
+    txt = txt.replace(format[0], format[1]);
+  } else {
+    console.error('Illegal formatting');
+  }
+  return txt;
+}
+
 /* FOR DEBUG ONLY */
 
 function showP(tag='html') {
