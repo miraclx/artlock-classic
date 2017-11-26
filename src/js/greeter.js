@@ -208,7 +208,7 @@ function prepShoot() {
       align: "center"
     }
   });
-  $('select').niceSelect();
+  $('select, .user_selector').niceSelect();
   FastClick.attach(document.body);
   setTimeout( () => {
     splash_notify.update({
