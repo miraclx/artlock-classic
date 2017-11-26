@@ -273,6 +273,11 @@ input[type="submit"]:hover {
   display: inline-block;
 }
 
+.power-question {
+  transform: scale(1.5);
+  padding: 2px;
+}
+
 #power-yes {
   border: none;
   border-radius: 3px;
