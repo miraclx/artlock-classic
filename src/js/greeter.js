@@ -117,33 +117,46 @@ function initUsers() {
     $userNode = $name_template.clone();
     $children = $name_template.children().clone(true, true);
     dispName = selected_user.display_name;
-    $(userNode).html( ((!selected_user.logged_in)
-    ? c$().reduce(15, dispName)
-    : c$().reduce(14, dispName)+ ' •')
-    );
+    $userNode.html( c$().reduce(15, dispName) );
+    $children.each(function () {
+      $userNode.append(this);
+    });
     if (selected_user.logged_in) {
       ++active_users;
+      $($userNode).find('.user_locked').each(function () {
+        $(this)
+          .addClass('fa fa-circle')
+          .css({
+            'font-family': '',
+            'font-size': '7pt',
+            'position': 'absolute',
+            'right': '12px',
+            'padding-top': '18px',
+            'color': '#33D900'
+          });
+      });
     }
     // Implement the trial count
-    userNode.attr('id', selected_user.username);
-    userNode[0].onclick = user_clicked;
-    userNode.attr('session', (selected_user.session) ? selected_user.session : lightdm.default_session);
-    $name_parent.append(userNode);
+    $userNode.attr('id', selected_user.username);
+    $userNode.get(0).onclick = user_clicked;
+    $userNode.attr('session', (selected_user.session) ? selected_user.session : lightdm.default_session);
+    $name_parent.append($userNode);
   }
-  $('select').niceSelect('update');
   authUser(lightdm.users[0].username);
+  $name_parent.data('selected', lightdm.users[0].username);
+  $('.user_selector').niceSelect('update');
 }
 function setUserImage(user, box) {
   if (box.attr('rpath') != user.image) {
     $('#user_image').fadeOut(250, () => {
       if (user.image) {
-        box.attr('src', user.image);
-        box.attr('rpath', user.image);
-        box.on('error', () => {
-          box.attr('src', 'src/img/avatar/default.png');
-        });
+    box.attr('src', user.image);
+    box.attr('rpath', user.image);
+    box.on('error', () => {
+      box.attr('src', 'src/img/avatar/default.png');
+    });
       } else {
-        box.attr('src', 'src/img/avatars/default.png');
+    box.attr('src', 'src/img/avatars/default.png');
       }
     }).fadeIn(250);
   }
