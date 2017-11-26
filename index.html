@@ -14,7 +14,7 @@
     <meta charset="utf-8">
     <meta name='Description' content='ArtanOS WebLock Classic'>
     <meta name='Author' content='Miraculous Owonubi'>
-    <meta name='viewport' content=' width=device-width, height=device-height, user-scalable=no'> <!-- 1366 * 768 -->
+    <meta name='viewport' content='width=device-width, height=device-height, user-scalable=no'> <!-- 1366 * 768 -->
     <!-- Scripts -->
     <!-- Vendor Libraries -->
     <script type="text/javascript" src="src/js/vendor/jquery.js"></script>
@@ -31,8 +31,10 @@
     <script type="text/javascript" src="src/js/greeter.js"></script>
     <!-- Style Sheets -->
     <!-- Vendor Sheets -->
-    <link rel="stylesheet" href="src/css/vendor/Flaticon/flaticon.css">
-    <link rel="stylesheet" href="src/css/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="src/css/vendor/flaticon/flaticon.css">
+    <link rel="stylesheet" href="src/css/vendor/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="src/css/vendor/bootstrap-3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="src/css/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="src/css/vendor/animate.css">
     <link rel="stylesheet" href="src/css/vendor/nice-select.css">
     <!-- Local Sheets -->
@@ -45,12 +47,15 @@
     <div id="login_container">
       <form action="javascript: respond()">
         <span id="image_holder">
-          <img id="user_image" src="src/img/avatar/default.jpg" tooltip='User Image'/> <br/>
+          <img id="user_image" src="src/img/avatars/default.png" tooltip='User Image'/> <br/>
         </span>
         <span id="user_name_box">
-          <select id="user_names" class="user_selector wide" tooltip='Select a user'>
-            <option id="username_template"> --- <i class="logged flaticon-locked"> </i> </option>
-          </select>
+          <div id="user_names" class="user_selector wide">
+            <span id="username_template"> 
+              ---
+              <i class="user_locked"></i> 
+            </span>
+          </div>
         </span>
         <input id="pass_entry" type="password"/> <br/>
         <input id="submit" type="submit" value="GO"/> <br/>
@@ -59,7 +64,7 @@
     <span id='tooltip-box'> </span>
     <div class='blocker' id='powerLmtr'> </div>
     <div id="power" tooltip="Power">
-      <span class="flaticon-apps power-fab power-btn-large" id="powerBtn"></span>
+      <span class="fa fa-bars power-fab power-btn-large" id="powerBtn"></span>
       <div class="power-menu">
         <span action='lightdm.restart()'>
           <i tooltip="Restart" class="power-fab power-btn-sm power-btn-restart scale-transition scale-out flaticon-left-arrow"></i>
@@ -73,7 +78,8 @@
       </div>
       <div class="power-card scale-transition scale-out">
         <div id="power-confirm">
-          <span> Are You Sure ? </span>
+          <span class='power-question fa fa-question-circle-o'> </span>
+          <span> Are You Sure </span>
           <a id="power-yes"> Yes </a>
         </div>
       </div>

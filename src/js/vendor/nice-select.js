@@ -7,7 +7,6 @@
 (function($) {
 
   $.fn.niceSelect = function(method) {
-    
     // Methods
     if (typeof method == 'string') {      
       if (method == 'update') {
@@ -19,7 +18,6 @@
           if ($dropdown.length) {
             $dropdown.remove();
             create_nice_select($select);
-            
             if (open) {
               $select.next().trigger('click');
             }
@@ -67,9 +65,19 @@
       );
         
       var $dropdown = $select.next();
-      var $options = $select.find('option');
-      var $selected = $select.find('option:selected');
-      
+      var $options = $select.children();
+      var $selected;
+      var ways = [ 
+        $select.find(':selected'),
+        $('#'+$select.data('selected')),
+        $($options.get(0))
+      ];
+      $.each(ways, function () {
+        if (this.get().length == 1 && $selected == null) {
+          this.data('selected', true);
+          $selected = this;
+        }
+      });
       $dropdown.find('.current').html($selected.data('display') || $selected.text());
       
       $options.each(function(i) {
@@ -79,11 +87,11 @@
         $dropdown.find('ul').append($('<li></li>')
           .attr('data-value', $option.val())
           .attr('data-display', (display || null))
-          .on("click", $option[0].onclick)
+          .on("click", $option.get(0).onclick)
           .addClass('option' +
-            ($option.is(':selected') ? ' selected' : '') +
+            (($option.is(':selected') || $option.data('selected')) ? ' selected' : '') +
             ($option.is(':disabled') ? ' disabled' : ''))
-          .html($option.text())
+          .html($option.html())
           .each(function() { 
             that = this;
             $.each($option.prop('attributes'), function() { 
