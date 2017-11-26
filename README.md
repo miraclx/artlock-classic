@@ -20,7 +20,8 @@ Based on Antergos' Webkit2 Greeter
 2. Set [lightdm] as your Display manager.
 3. Install [lightdm-webkit2-greeter] from the AUR.
 4. In the directory of the downloaded file in (1), Type <br/>
-    ``` chmod +x ./install.sh
+    ``` 
+     chmod +x ./install.sh
      sudo ./install.sh 
     ```
     This is going to
