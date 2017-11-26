@@ -84,7 +84,7 @@ window.authentication_complete = () => {
 //Personal Functions
 function user_clicked(event) {
   if ( event.target.getAttribute('id') == data.selected_user ) {
-    notify("Already authenticating "+ getPack(data.selected_user).display_name, 'warning');
+    show_message("Already authenticating "+ getPack(data.selected_user).display_name, 'warning');
   }
   if (lightdm.in_authentication) {
     lightdm.cancel_authentication();
