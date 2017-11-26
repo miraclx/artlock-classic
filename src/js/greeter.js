@@ -114,7 +114,8 @@ function initUsers() {
   $name_template.remove();
   for (var i = 0; i < lightdm.users.length; i++) {
     selected_user = lightdm.users[i];
-    userNode = $name_template.clone();
+    $userNode = $name_template.clone();
+    $children = $name_template.children().clone(true, true);
     dispName = selected_user.display_name;
     $(userNode).html( ((!selected_user.logged_in)
     ? c$().reduce(15, dispName)
