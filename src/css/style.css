@@ -126,10 +126,6 @@ input, .user_selector {
           transition: 0.5s border-color;
 }
 
-#user_names {
-  display: none;
-}
-
 .user_selector {
   border-radius: 0;
   color: #008B8B;
