@@ -90,6 +90,24 @@ window.cancel_authentication = () => {
   return prev_user;
 }
 
+window.mock_reload = () => {
+  setTimeout(() => {
+    $(".option#" + data.selected_user).find('.user_locked').each(function() {
+      $(this)
+        .addClass('fa fa-circle')
+        .css({
+          'font-family': '',
+          'font-size': '7pt',
+          'position': 'absolute',
+          'right': '12px',
+          'padding-top': '18px',
+          'color': '#33D900'
+        });
+    });
+    $('#submit').attr('go', "");
+  }, 1000);
+}
+
 //Personal Functions
 function user_clicked(event) {
   if (event.target.getAttribute('id') == data.selected_user) {
