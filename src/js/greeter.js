@@ -83,13 +83,20 @@ window.authentication_complete = () => {
   }
 }
 
+window.cancel_authentication = () => {
+  prev_user = data.selected_user;
+  data.selected_user = null;
+  lightdm.cancel_authentication();
+  return prev_user;
+}
+
 //Personal Functions
 function user_clicked(event) {
   if (event.target.getAttribute('id') == data.selected_user) {
     show_message("Already authenticating " + getPack(data.selected_user).display_name, 'warning');
   }
   if (lightdm.in_authentication) {
-    lightdm.cancel_authentication();
+    cancel_authentication();
     data.selected_user = null;
   }
   authUser(event.target.getAttribute('id'));
