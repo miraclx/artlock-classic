@@ -194,9 +194,12 @@ function getPack(username) {
       return lightdm.users[i];
     }
   }
-}
+} 
 function prepShoot() {
-  splash_notify = notify('Hello There, Preparing...', 'warning',{
+  splash_notify = notify('Hello There, Preparing...', {
+    icon: 'fa fa-spin fa-spinner' 
+    }, {
+    type: 'warning',
     showProgressbar: true,
     delay: 4000,
     allow_dismiss: false,
