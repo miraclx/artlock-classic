@@ -172,7 +172,7 @@ function authUser(user) {
 function setTheme(theme) {
   box = window.themes[theme];
   if ( box.font ) {
-    $("*").css("font-family", box.font);
+    $("*:not(.fa)").css("font-family", box.font);
   }
   if (box.container_radius) {
     $("#login_container").css("border-radius", box.container_radius );
