@@ -161,7 +161,7 @@ function initUsers() {
             'padding-top': '18px',
             'color': '#33D900'
           });
-        });
+      });
     }
     // Implement the trial count
     $userNode.attr('id', selected_user.username);
@@ -169,8 +169,9 @@ function initUsers() {
     $userNode.attr('session', (selected_user.session) ? selected_user.session : lightdm.default_session);
     $name_parent.append($userNode);
   }
-  authUser(lightdm.users[0].username);
-  $name_parent.data('selected', lightdm.users[0].username);
+  user = lightdm.users[0].username;
+  authUser(user);
+  $name_parent.data('selected', user);
   $('.user_selector').niceSelect('update');
 }
 function setUserImage(user, box) {
