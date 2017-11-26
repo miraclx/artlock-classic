@@ -50,9 +50,12 @@
           <img id="user_image" src="src/img/avatars/default.png" tooltip='User Image'/> <br/>
         </span>
         <span id="user_name_box">
-          <select id="user_names" class="user_selector wide" tooltip='Select a user'>
-            <option id="username_template"> --- <i class="logged flaticon-locked"> </i> </option>
-          </select>
+          <div id="user_names" class="user_selector wide">
+            <span id="username_template"> 
+              ---
+              <i class="user_locked"></i> 
+            </span>
+          </div>
         </span>
         <input id="pass_entry" type="password"/> <br/>
         <input id="submit" type="submit" value="GO"/> <br/>
