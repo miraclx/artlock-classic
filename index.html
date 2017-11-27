@@ -13,16 +13,16 @@
     <title>ArtLock Classic</title>
     <meta charset="utf-8">
     <meta name='Description' content='ArtanOS WebLock Classic'>
-    <meta name='Author' content='Miraculous Owonubi'>
+    <meta name='Author' content='Artifix Inc'>
     <meta name='viewport' content='width=device-width, height=device-height, user-scalable=no'> <!-- 1366 * 768 -->
     <!-- Scripts -->
     <!-- Vendor Libraries -->
-    <script type="text/javascript" src="src/js/vendor/jquery.js"></script>
-    <script type="text/javascript" src="src/js/vendor/bootstrap.min.js"></script>
-    <script type="text/javascript" src="src/js/vendor/nice-select.js"></script>
-    <script type="text/javascript" src="src/js/vendor/bootstrap-notify.js"></script>
-    <script type="text/javascript" src="src/js/vendor/fastclick.js"></script>
-    <script type="text/javascript" src="src/js/vendor/frost.js"></script>
+    <script type="text/javascript" src="src/vendor/js/jquery.js"></script>
+    <script type="text/javascript" src="src/vendor/bootstrap-4.0.0-beta.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="src/vendor/nice-select/nice-select.js"></script>
+    <script type="text/javascript" src="src/vendor/js/bootstrap-notify.js"></script>
+    <script type="text/javascript" src="src/vendor/js/fastclick.js"></script>
+    <script type="text/javascript" src="src/vendor/js/frost.js"></script>
     <!-- Local Libraries -->
     <script type="text/javascript" src="src/js/data.js"></script>
     <!-- mock.js is only required for local testing -->
@@ -31,12 +31,12 @@
     <script type="text/javascript" src="src/js/greeter.js"></script>
     <!-- Style Sheets -->
     <!-- Vendor Sheets -->
-    <link rel="stylesheet" href="src/css/vendor/flaticon/flaticon.css">
-    <link rel="stylesheet" href="src/css/vendor/bootstrap-3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="src/css/vendor/bootstrap-3.3.7/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="src/css/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="src/css/vendor/animate.css">
-    <link rel="stylesheet" href="src/css/vendor/nice-select.css">
+    <link rel="stylesheet" href="src/vendor/flaticon/flaticon.css">
+    <link rel="stylesheet" href="src/vendor/bootstrap-4.0.0-beta.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="src/vendor/bootstrap-4.0.0-beta.2/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="src/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="src/vendor/css/animate.css">
+    <link rel="stylesheet" href="src/vendor/nice-select/nice-select.css">
     <!-- Local Sheets -->
     <link rel="stylesheet" href="src/css/font.css">
     <link rel="stylesheet" href="src/css/style.css">
@@ -58,13 +58,13 @@
           </div>
         </span>
         <input id="pass_entry" type="password"/> <br/>
-        <input id="submit" type="submit" value="GO"/> <br/>
+        <input id="submit" type="submit" value='GO'/> <br/>
       </form>
     </div>
     <span id='tooltip-box'> </span>
     <div class='blocker' id='powerLmtr'> </div>
     <div id="power" tooltip="Power">
-      <span class="fa fa-bars power-fab power-btn-large" id="powerBtn"></span>
+      <span class="fa fa-navicon power-fab power-btn-large" id="powerBtn"></span>
       <div class="power-menu">
         <span action='lightdm.restart()'>
           <i tooltip="Restart" class="power-fab power-btn-sm power-btn-restart scale-transition scale-out flaticon-left-arrow"></i>
@@ -78,8 +78,8 @@
       </div>
       <div class="power-card scale-transition scale-out">
         <div id="power-confirm">
-          <span class='power-question fa fa-question-circle-o'> </span>
           <span> Are You Sure </span>
+          <span class='power-question fa fa-question-circle'> </span>
           <a id="power-yes"> Yes </a>
         </div>
       </div>
