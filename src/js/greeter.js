@@ -414,6 +414,19 @@ function forMatr(txt, ...format) {
   return txt;
 }
 
+function toggleVisibility(evt) {
+  $el = $(evt.currentTarget);
+  $box = $('#pass_entry');
+  if ($box.attr('type') == 'password') {
+    $box.attr('type', 'text');
+    $el.removeClass('fa-eye').addClass('fa-eye-slash');
+  } else {
+    $box.attr('type', 'password');
+    $el.removeClass('fa-eye-slash').addClass('fa-eye');
+  }
+  $box.focus();
+}
+
 /* FOR DEBUG ONLY */
 
 function showP(tag='html') {

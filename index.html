@@ -49,15 +49,18 @@
         <span id="image_holder">
           <img id="user_image" src="src/img/avatars/default.png" tooltip='User Image'/> <br/>
         </span>
-        <span id="user_name_box">
+        <div id="user_name_box">
           <div id="user_names" class="user_selector wide">
             <span id="username_template"> 
               ---
               <i class="user_locked"></i> 
             </span>
           </div>
-        </span>
-        <input id="pass_entry" type="password"/> <br/>
+        </div>
+        <div id='pass-box'>
+          <input id="pass_entry" type="password"/>
+          <span class='fa fa-eye' id='visibility_toggler' onclick="toggleVisibility(event)"> </span>
+        </div>
         <input id="submit" type="submit" value='GO'/> <br/>
       </form>
     </div>

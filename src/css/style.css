@@ -45,7 +45,7 @@ body{
 
 [data-notify="container"] {
   border-left: 3px solid;
-  width: 250px;
+  width: 270px;
 }
 
 [data-notify="progressbar"] { 
@@ -129,6 +129,20 @@ input, .user_selector {
 .user_selector {
   border-radius: 0;
   color: #008B8B;
+}
+
+#visibility_toggler {
+  position: absolute;
+  margin-left: 75px;
+  margin-top: -50px;
+  font-size: 15pt;
+  opacity: 0;
+  -webkit-transition: opacity 1s;
+          transition: opacity 1s;
+}
+
+#pass_entry:focus ~ #visibility_toggler {
+  opacity: 1;
 }
 
 input:focus, .user_selector:focus {
