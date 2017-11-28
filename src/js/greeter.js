@@ -31,7 +31,7 @@ window.show_prompt = (prompt, type='password') => {
   $('#pass_entry').attr('type', type);
 }
 window.show_message = (msg,type='info') => {
-  opts = {};
+  opts = {}; //Pre defined options
   switch (type) {
   case 'error':
     type = 'danger';
@@ -118,7 +118,6 @@ function user_clicked(event) {
   }
   if (lightdm.in_authentication) {
     cancel_authentication();
-    data.selected_user = null;
   }
   authUser(event.target.getAttribute('id'));
 }
@@ -266,10 +265,7 @@ function prepShoot() {
       });
       initFPB();
       initTooltip();
-      $("#loading").css('opacity', '0');
-      setTimeout(() => {
-        $("#loading").hide();
-      }, 1000);
+      $('#loading').fadeOut(1000);
     }, 4000);
   });
 }
@@ -334,15 +330,36 @@ function initFPB() {
   }
   function toggleLmtr() {
     if ($("#powerLmtr").is(":visible")) {
-      $("#powerLmtr").hide();
+      $("#powerLmtr").fadeOut(500);
     } else {
-      $("#powerLmtr").show();
+      $("#powerLmtr").fadeIn(500);
     }
   }
   $('#powerBtn, #powerLmtr').click(function() {
     toggleMenu();
     toggleLmtr();
   });
+  $('#power').hover(function() {
+    $('#powerBtn').fadeIn(1000);
+  }, function () {
+    that = $('#powerBtn').get(0);
+    if ($('#powerLmtr').is(':hidden')) {
+      setTimeout(function () {
+        $(that).fadeOut(1000);
+      }, 2000);
+    } else {
+      $('#powerLmtr').on('click', function () {
+        setTimeout(function () {
+          $(that).fadeOut(1000);
+        }, 2000);
+      });
+    }
+  });
+  setTimeout(function() {
+    if ($('#powerLmtr').is(':hidden')) {
+      $('#powerBtn').fadeOut(1000);
+    }
+  }, 3000);
   $('.power-btn-sm').click(function() {
     var btn = $(this);
     var card = $('.power-card');
