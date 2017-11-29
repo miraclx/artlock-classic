@@ -416,8 +416,8 @@ function forMatr(txt, ...format) {
   return txt;
 }
 
-function toggleVisibility(evt) {
-  $el = $(evt.currentTarget);
+function toggleVisibility() {
+  $el = $("#visibility_toggler");
   $box = $('#pass_entry');
   if ($box.attr('type') == 'password') {
     $box.attr('type', 'text');
