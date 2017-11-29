@@ -133,8 +133,8 @@ input, .user_selector {
   margin-top: -50px;
   font-size: 15pt;
   opacity: 0;
-  -webkit-transition: opacity 1s;
-          transition: opacity 1s;
+  -webkit-transition: opacity 200ms;
+          transition: opacity 200ms;
 }
 
 #pass_entry:focus ~ #visibility_toggler {
