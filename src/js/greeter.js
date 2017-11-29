@@ -340,11 +340,13 @@ function initFPB() {
     toggleMenu();
     toggleLmtr();
   });
+  /* Mobile Device Support
   $("#pass_entry").focusin(function () {
     $('#powerBtn').fadeOut(200);
   }).focusout(function () {
     $('#powerBtn').fadeIn(200);
   });
+  */
   $('.power-btn-sm').click(function() {
     var btn = $(this);
     var card = $('.power-card');
