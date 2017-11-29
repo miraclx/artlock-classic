@@ -108,6 +108,7 @@ window.mock_reload = () => {
         });
     });
     $('#submit').attr('go', "");
+    show_prompt("Password:", "password");
   }, 1000);
 }
 
