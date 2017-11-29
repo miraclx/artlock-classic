@@ -339,27 +339,11 @@ function initFPB() {
     toggleMenu();
     toggleLmtr();
   });
-  $('#power').hover(function() {
-    $('#powerBtn').fadeIn(1000);
-  }, function () {
-    that = $('#powerBtn').get(0);
-    if ($('#powerLmtr').is(':hidden')) {
-      setTimeout(function () {
-        $(that).fadeOut(1000);
-      }, 2000);
-    } else {
-      $('#powerLmtr').on('click', function () {
-        setTimeout(function () {
-          $(that).fadeOut(1000);
-        }, 2000);
-      });
-    }
+  $("#pass_entry").focusin(function () {
+    $('#powerBtn').fadeOut(200);
+  }).focusout(function () {
+    $('#powerBtn').fadeIn(200);
   });
-  setTimeout(function() {
-    if ($('#powerLmtr').is(':hidden')) {
-      $('#powerBtn').fadeOut(1000);
-    }
-  }, 3000);
   $('.power-btn-sm').click(function() {
     var btn = $(this);
     var card = $('.power-card');
