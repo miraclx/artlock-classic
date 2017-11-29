@@ -380,7 +380,7 @@ function initTooltip() {
     $('#tooltip-box')
       .html(display_text)
       .css('left', (ordin8.left) + 'px')
-      .css('top', (ordin8.top + $that.outerHeight()) + 'px')
+      .css('top', (ordin8.top + $that.outerHeight() + 5) + 'px')
       .show();
   }, function() {
     $('#tooltip-box').hide();
