@@ -235,48 +235,11 @@ function getPack(username) {
 }
 
 function prepShoot() {
-  splash_notify = notify('Hello There, Preparing...', {
-    icon: 'fa fa-spin fa-spinner'
-  }, {
-    type: 'warning',
-    showProgressbar: true,
-    delay: 4000,
-    allow_dismiss: false,
-    placement: {
-      from: "top",
-      align: "center"
-    }
-  });
   $('select, .user_selector').niceSelect();
   FastClick.attach(document.body);
-  setTimeout(() => {
-    splash_notify.update({
-      message: "Preparing plug-in's",
-    });
-  }, 1500);
-  setTimeout(() => {
-    splash_notify.update({
-      message: "Gathering Users",
-    });
-  }, 2200);
-  setTimeout(() => {
-    splash_notify.update({
-      message: "Applying User configurations",
-      type: "info"
-    });
-  }, 3000);
-  // ON READY MODULES
-  $(document).ready(() => {
-    setTimeout(() => {
-      splash_notify.update({
-        message: "All set",
-        type: "success"
-      });
-      initFPB();
-      initTooltip();
-      $('#loading').fadeOut(1000);
-    }, 4000);
-  });
+  initFPB();
+  initTooltip();
+  $('#loading').fadeOut(100);
 }
 
 function notify(msg = '', ...args) {
