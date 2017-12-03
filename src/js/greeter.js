@@ -22,7 +22,7 @@ if (!('lightdm' in window)) {
 }
 
 //LightDM callbacks
-window.show_prompt = (prompt, type='password') => {
+window.show_prompt = (prompt, type = 'password') => {
   $('#pass_entry').attr('placeholder', prompt.replace(':', ''));
   $('#pass_entry').val('');
   setTimeout(() => {
@@ -30,31 +30,31 @@ window.show_prompt = (prompt, type='password') => {
   }, 250);
   $('#pass_entry').attr('type', type);
 }
-window.show_message = (msg,type='info') => {
+window.show_message = (msg, type = 'info') => {
   opts = {}; //Pre defined options
   switch (type) {
-  case 'error':
-    type = 'danger';
-    opts = {
-      placement: {
-        from: "bottom",
-        align: "left"
+    case 'error':
+      type = 'danger';
+      opts = {
+        placement: {
+          from: "bottom",
+          align: "left"
+        }
+      };
+      attr = {
+        icon: "fa fa-exclamation-circle"
+      };
+      break;
+    case 'warning':
+      attr = {
+        icon: 'fa fa-bell-o'
       }
-    };
-    attr = {
-      icon: "fa fa-exclamation-circle"
-    };
-    break;
-  case 'warning':
-    attr = {
-      icon: 'fa fa-bell-o'
-    }
-    break;
-  case 'success':
-    attr = {
-      icon: 'fa fa-unlock'
-    }
-    break;
+      break;
+    case 'success':
+      attr = {
+        icon: 'fa fa-unlock'
+      }
+      break;
   }
   if (typeof attr != "undefined") {
     opts = mixIn(opts, {
@@ -122,9 +122,11 @@ function user_clicked(event) {
   }
   authUser(event.target.getAttribute('id'));
 }
+
 function respond(event) {
   lightdm.respond($('#pass_entry').val());
 }
+
 function init() {
   try {
     prepShoot();
@@ -138,6 +140,7 @@ function init() {
     console.error('Error: \n' + exception);
   }
 }
+
 function initUsers() {
   var $name_template = $('#username_template');
   var $name_parent = $name_template.parent();
@@ -177,6 +180,7 @@ function initUsers() {
   $name_parent.data('selected', user);
   $('.user_selector').niceSelect('update');
 }
+
 function setUserImage(user, box) {
   if (box.attr('rpath') != user.image) {
     $('#user_image').fadeOut(250, () => {
@@ -192,6 +196,7 @@ function setUserImage(user, box) {
     }).fadeIn(250);
   }
 }
+
 function authUser(user) {
   data.selected_user = user;
   data.session = $("#" + user).attr('session');
@@ -200,6 +205,7 @@ function authUser(user) {
     lightdm.authenticate(user);
   }
 }
+
 function setTheme(theme) {
   box = window.themes[theme];
   if (box.font) {
@@ -219,6 +225,7 @@ function setTheme(theme) {
     $("#submit")[0].value = box.submit_button_text;
   }
 }
+
 function getPack(username) {
   for (var i = 0; i < lightdm.users.length; i++) {
     if (lightdm.users[i].username == username) {
@@ -226,6 +233,7 @@ function getPack(username) {
     }
   }
 }
+
 function prepShoot() {
   splash_notify = notify('Hello There, Preparing...', {
     icon: 'fa fa-spin fa-spinner'
@@ -271,8 +279,9 @@ function prepShoot() {
   });
 }
 
-function notify(msg='', ...args) {
-  var type = 'info', attr = options = {};
+function notify(msg = '', ...args) {
+  var type = 'info',
+    attr = options = {};
   if (args[0] && typeof args[0] === 'string') {
     type = args[0];
   } else if (args[0] && typeof args[0] === 'object') {
@@ -329,6 +338,7 @@ function initFPB() {
       $('.power-card').toggleClass('scale-out');
     }
   }
+
   function toggleLmtr() {
     if ($("#powerLmtr").is(":visible")) {
       $("#powerLmtr").fadeOut(500);
@@ -390,7 +400,7 @@ function initTooltip() {
 function getCoord(el, ...direction) {
   function get(el, pos) {
     var scrollTop = $(window).scrollTop(),
-        elementOffset = $(el).offset()[pos];
+      elementOffset = $(el).offset()[pos];
     return (elementOffset - scrollTop);
   }
   if (direction.length > 1) {
@@ -433,6 +443,6 @@ function toggleVisibility() {
 
 /* FOR DEBUG ONLY */
 
-function showP(tag='html') {
+function showP(tag = 'html') {
   alert($(tag).html());
 }

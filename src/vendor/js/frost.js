@@ -1,25 +1,22 @@
 /*
 
-	   Frost.JS © 2017 Mirculous Owonubi
+	   Frost.JS © 2017 Mirculous Owonubi <omiraculous@gmail.com>
 	   Version 3.5.284
 
+  */
 
-	   /### Added more functionality!
-
-
-	*/
 if (typeof Array.prototype.indexOf !== 'function') {
-  Array.prototype.indexOf = function (item) {
+  Array.prototype.indexOf = function(item) {
     for (var i = 0; i < this.length; i++) {
       if (this[i] === item) {
         return i;
       }
     }
-    return - 1;
+    return -1;
   };
-}// var is_id = false;
+} // var is_id = false;
 
-window.ice = (function () {
+window.ice = (function() {
   function Frost(els) {
     for (var i = 0; i < els.length; i++) {
       this[i] = els[i];
@@ -29,9 +26,9 @@ window.ice = (function () {
   Frost.prototype = {
     // ======== Variables ========
     // ========= UTILS =========
-    c$: function (selector) {
+    c$: function(selector) {
       var els;
-      elem = this.mapOne(function (el) {
+      elem = this.mapOne(function(el) {
         return el;
       });
       if (typeof selector === 'undefined') {
@@ -60,7 +57,7 @@ window.ice = (function () {
         return _ret;
       }
     },
-    make: function (tagName, attrs) {
+    make: function(tagName, attrs) {
       var el = new Frost([document.createElement(tagName)]);
       if (attrs) {
         if (attrs.className) {
@@ -79,13 +76,12 @@ window.ice = (function () {
       }
       return el;
     },
-    forEach: function (callback) {
+    forEach: function(callback) {
       this.map(callback);
       return this;
     },
-    map: function (callback) {
-      var results = [
-      ];
+    map: function(callback) {
+      var results = [];
       if (this._used_id) {
         results.push(callback.call([].push(this), this, 0));
       } else {
@@ -95,18 +91,18 @@ window.ice = (function () {
       }
       return results; //.length > 1 ? results : results[0];
     },
-    mapOne: function (callback) {
+    mapOne: function(callback) {
       var m = this.map(callback);
       return m.length > 1 ? m : m[0];
     },
-    delay: function (func, time) {
+    delay: function(func, time) {
       time *= 1000;
       setTimeout(func(), time);
     },
-    getRand: function (max) {
+    getRand: function(max) {
       return Math.floor(Math.random() * max) + 1;
     },
-    reduce: function (limit, syntax) {
+    reduce: function(limit, syntax) {
       ret = '';
       nxt_white_sp = syntax.indexOf(' ');
       if (nxt_white_sp < 0 || nxt_white_sp == 0 || nxt_white_sp > limit) nxt_white_sp = limit;
@@ -119,15 +115,15 @@ window.ice = (function () {
       }
       return ret;
     },
-    is_upper: function (char) {
+    is_upper: function(char) {
       upper_alpha = 'ABC:DE@FGHIJKLM*NOPQRS?TUVWXYZ';
       return (upper_alpha.indexOf(char) >= 0);
     },
-    is_lower: function (char) {
+    is_lower: function(char) {
       lower_alpha = 'abc!de/fghi;jklm+nopqrstuv-wxyz';
       return (lower_alpha.indexOf(char) >= 0);
     },
-    encrypt: function (offset, decoded) {
+    encrypt: function(offset, decoded) {
       offset = parseInt(offset);
       lower_alpha = 'abc!de/fghi;jklm+nopqrstuv-wxyz';
       upper_alpha = 'ABC:DE@FGHIJKLM*NOPQRS?TUVWXYZ';
@@ -158,7 +154,7 @@ window.ice = (function () {
       }
       return encoded;
     },
-    decrypt: function (offset, encoded) {
+    decrypt: function(offset, encoded) {
       offset = parseInt(offset);
       lower_alpha = 'abc!de/fghi;jklm+nopqrstuv-wxyz';
       upper_alpha = 'ABC:DE@FGHI-JKLM*NOPQRS?TUVWXYZ';
@@ -190,34 +186,32 @@ window.ice = (function () {
       return decoded;
     },
     // ========== DOM MANIPULATION ==========
-    text: function (text) {
+    text: function(text) {
       if (typeof text !== 'undefined') {
-        return this.forEach(function (el) {
+        return this.forEach(function(el) {
           el.innerText = text;
         });
       } else {
-        return this.mapOne(function (el) {
+        return this.mapOne(function(el) {
           return el.innerText;
         });
       }
     },
-    html: function (html) {
+    html: function(html) {
       if (typeof html !== 'undefined') {
-        return this.forEach(function (el) {
+        return this.forEach(function(el) {
           el.innerHTML = html;
         });
       } else {
-        return this.mapOne(function (el) {
+        return this.mapOne(function(el) {
           return el.innerHTML;
         });
       }
     },
-    siblings: function () {
-      return this.mapOne(function (elem) {
-        el = ((elem.parentNode || {
-        }).firstChild);
-        var matched = [
-        ];
+    siblings: function() {
+      return this.mapOne(function(elem) {
+        el = ((elem.parentNode || {}).firstChild);
+        var matched = [];
         for (; el; el = el.nextSibling) {
           if (el.nodeType === 1 && el !== elem) {
             matched.push(el);
@@ -226,32 +220,29 @@ window.ice = (function () {
         return new Frost(matched);
       });
     },
-    addSuffix: function (int) {
+    addSuffix: function(int) {
       int += '';
       end = int[int.length - 1];
       if (end == 1) {
         var suffix = 'st';
-      }
-      else if (end == 2) {
+      } else if (end == 2) {
         var suffix = 'nd';
-      }
-      else if (end == 3) {
+      } else if (end == 3) {
         var suffix = 'rd';
-      }
-      else {
+      } else {
         var suffix = 'th';
       }
       if (int == '11') suffix = 'th';
       return suffix;
     },
-    keypress: function ( /*  key,  */
-    action) {
-      document.onkeydown = (function (evt) {
+    keypress: function( /*  key,  */
+      action) {
+      document.onkeydown = (function(evt) {
         // alert(evt.keyCode);
         action();
       });
     },
-    addClass: function (classes) {
+    addClass: function(classes) {
       var className = '';
       if (typeof classes !== 'string') {
         for (var i = 0; i < classes.length; i++) {
@@ -260,18 +251,18 @@ window.ice = (function () {
       } else {
         className = ' ' + classes;
       }
-      return this.forEach(function (el) {
+      return this.forEach(function(el) {
         // el.className += className;
         el.classList.add(className);
       });
     },
-    delClass: function (className) {
-      return this.forEach(function (el) {
+    delClass: function(className) {
+      return this.forEach(function(el) {
         el.classList.remove(className);
       });
     },
-    attr: function (attr, val) {
-      el = this.forEach(function (el) {
+    attr: function(attr, val) {
+      el = this.forEach(function(el) {
         return el;
       });
       if (typeof attr === 'object') {
@@ -279,17 +270,17 @@ window.ice = (function () {
           el[0].setAttribute(i, attr[i]);
         };
       } else if (typeof val !== 'undefined') {
-        return this.forEach(function (el) {
+        return this.forEach(function(el) {
           el.setAttribute(attr, val);
         });
       } else {
-        return this.mapOne(function (el) {
+        return this.mapOne(function(el) {
           return el.getAttribute(attr);
         });
       }
     },
-    css: (function (val) {
-      dta = this.forEach(function (el) {
+    css: (function(val) {
+      dta = this.forEach(function(el) {
         return el;
       });
       dta = dta[0].getAttribute('style') + '; ';
@@ -300,26 +291,25 @@ window.ice = (function () {
         for (_csx in val) {
           dta = dta + _csx + ':' + val[_csx] + '; ';
         };
-        return this.forEach(function (el) {
+        return this.forEach(function(el) {
           el.setAttribute('style', dta);
         });
-      }
-      else if (typeof val !== 'undefined') {
-        return this.forEach(function (el) {
+      } else if (typeof val !== 'undefined') {
+        return this.forEach(function(el) {
           el.setAttribute('style', dta + val);
         });
       } else {
-        return this.mapOne(function (el) {
+        return this.mapOne(function(el) {
           return el.getAttribute('style');
         });
       }
     }),
-    Title: function (text) {
+    Title: function(text) {
       _title = document.querySelector('title');
       if (_title == null) {
         title_el = this.make('title');
         _title = title_el[0];
-        c$(c$('head') [0]).append(title_el);
+        c$(c$('head')[0]).append(title_el);
       }
       if (text) {
         _title.innerHTML = text;
@@ -327,74 +317,74 @@ window.ice = (function () {
         return _title.innerHTML;
       }
     },
-    append: function (els) {
-      return this.forEach(function (parEl, i) {
-        els.forEach(function (childEl) {
-          parEl.appendChild((i > 0) ? childEl.cloneNode(true)  : childEl);
+    append: function(els) {
+      return this.forEach(function(parEl, i) {
+        els.forEach(function(childEl) {
+          parEl.appendChild((i > 0) ? childEl.cloneNode(true) : childEl);
         });
       });
     },
-    prepend: function (els) {
-      return this.forEach(function (parEl, i) {
-        for (var j = els.length - 1; j > - 1; j--) {
-          parEl.insertBefore((i > 0) ? els[j].cloneNode(true)  : els[j], parEl.firstChild);
+    prepend: function(els) {
+      return this.forEach(function(parEl, i) {
+        for (var j = els.length - 1; j > -1; j--) {
+          parEl.insertBefore((i > 0) ? els[j].cloneNode(true) : els[j], parEl.firstChild);
         }
       });
     },
-    remove: function () {
-      return this.forEach(function (el) {
+    remove: function() {
+      return this.forEach(function(el) {
         return el.parentNode.removeChild(el);
       });
     },
-    ready: (function (func, fallback) {
+    ready: (function(func, fallback) {
       if (document.readyState === 'complete' || (document.readyState !== 'loading' && !document.documentElement.doScroll)) {
         func();
       } else {
         if (fallback) {
           // Run if user specifies function
           fallback();
-        }        //  ###-fallback  document.addEventListener("DOMContentLoaded", func);
+        } //  ###-fallback  document.addEventListener("DOMContentLoaded", func);
 
         window.addEventListener('load', func);
       }
     }),
-    on: function () {
+    on: function() {
       if (document.addEventListener) {
-        return function (evt, fn) {
-          return this.forEach(function (el) {
+        return function(evt, fn) {
+          return this.forEach(function(el) {
             el.addEventListener(evt, fn, false);
           });
         };
       } else if (document.attachEvent) {
-        return function (evt, fn) {
-          return this.forEach(function (el) {
+        return function(evt, fn) {
+          return this.forEach(function(el) {
             el.attachEvent('on' + evt, fn);
           });
         };
       } else {
-        return function (evt, fn) {
-          return this.forEach(function (el) {
+        return function(evt, fn) {
+          return this.forEach(function(el) {
             el['on' + evt] = fn;
           });
         };
       }
     }(),
-    off: function () {
+    off: function() {
       if (document.removeEventListener) {
-        return function (evt, fn) {
-          return this.forEach(function (el) {
+        return function(evt, fn) {
+          return this.forEach(function(el) {
             el.removeEventListener(evt, fn, false);
           });
         };
       } else if (document.detachEvent) {
-        return function (evt, fn) {
-          return this.forEach(function (el) {
+        return function(evt, fn) {
+          return this.forEach(function(el) {
             el.detachEvent('on' + evt, fn);
           });
         };
       } else {
-        return function (evt, fn) {
-          return this.forEach(function (el) {
+        return function(evt, fn) {
+          return this.forEach(function(el) {
             el['on' + evt] = null;
           });
         };
@@ -402,9 +392,9 @@ window.ice = (function () {
     }()
   };
   var ice = {
-    get: function (selector) {
+    get: function(selector) {
       var els,
-      is_id = false;
+        is_id = false;
       if (typeof selector === 'undefined') {
         els = document;
       } else if (typeof selector === 'string') {
