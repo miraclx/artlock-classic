@@ -7,34 +7,34 @@
 */
 
 var active_users = 0;
-if (!("lightdm" in window)) {
+if (!('lightdm' in window)) {
   try {
     var lightdmMock = lightdmMock || {};
     window.lightdm = new lightdmMock(true, 0, false);
-    if ("lightdm" in window) {
-      console.log("LightDM Mock initialised", "lightdm");
+    if ('lightdm' in window) {
+      console.log('LightDM Mock initialised', 'lightdm');
     }
   } catch (err) {
-    console.error("LightDM Mock failed to initialise");
+    console.error('LightDM Mock failed to initialise');
   }
 } else {
   // DETECTED NATIVE
 }
 
 //LightDM callbacks
-window.show_prompt = (prompt, type = "password") => {
-  $("#pass_entry").attr("placeholder", prompt.replace(":", ""));
-  $("#pass_entry").val("");
+window.show_prompt = (prompt, type = 'password') => {
+  $('#pass_entry').attr('placeholder', prompt.replace(':', ''));
+  $('#pass_entry').val('');
   setTimeout(() => {
-    $("#pass_entry").focus();
+    $('#pass_entry').focus();
   }, 250);
-  $("#pass_entry").attr("type", type);
-};
-window.show_message = (msg, type = "info") => {
+  $('#pass_entry').attr('type', type);
+}
+window.show_message = (msg, type = 'info') => {
   opts = {}; //Pre defined options
   switch (type) {
-    case "error":
-      type = "danger";
+    case 'error':
+      type = 'danger';
       opts = {
         placement: {
           from: "bottom",
@@ -45,15 +45,15 @@ window.show_message = (msg, type = "info") => {
         icon: "fa fa-exclamation-circle"
       };
       break;
-    case "warning":
+    case 'warning':
       attr = {
-        icon: "fa fa-bell-o"
-      };
+        icon: 'fa fa-bell-o'
+      }
       break;
-    case "success":
+    case 'success':
       attr = {
-        icon: "fa fa-unlock"
-      };
+        icon: 'fa fa-unlock'
+      }
       break;
   }
   if (typeof attr != "undefined") {
@@ -64,11 +64,11 @@ window.show_message = (msg, type = "info") => {
     attr = type;
   }
   notify(msg, attr, opts);
-};
+}
 window.authentication_complete = () => {
   if (lightdm.is_authenticated) {
-    $("#submit").attr("go", true);
-    show_message("Access Granted", "success");
+    $('#submit').attr('go', true);
+    show_message('Access Granted', 'success');
     setTimeout(() => {
       try {
         lightdm.start_session(data.session);
@@ -77,59 +77,54 @@ window.authentication_complete = () => {
       }
     }, 1000);
   } else {
-    $("#submit").attr("go", false);
+    $('#submit').attr('go', false);
     setTimeout(() => {
-      $("#submit").attr("go", "");
+      $('#submit').attr('go', '');
     }, 2000);
-    show_message("Access Denied", "error");
+    show_message('Access Denied', 'error');
     authUser(data.selected_user);
   }
-};
+}
 
 window.cancel_authentication = () => {
   prev_user = data.selected_user;
   data.selected_user = null;
   lightdm.cancel_authentication();
   return prev_user;
-};
+}
 
 window.mock_reload = () => {
   setTimeout(() => {
-    $(".option#" + data.selected_user)
-      .find(".user_locked")
-      .each(function() {
-        $(this)
-          .addClass("fa fa-circle")
-          .css({
-            "font-family": "",
-            "font-size": "7pt",
-            position: "absolute",
-            right: "12px",
-            "padding-top": "18px",
-            color: "#33D900"
-          });
-      });
-    $("#submit").attr("go", "");
+    $(".option#" + data.selected_user).find('.user_locked').each(function() {
+      $(this)
+        .addClass('fa fa-circle')
+        .css({
+          'font-family': '',
+          'font-size': '7pt',
+          'position': 'absolute',
+          'right': '12px',
+          'padding-top': '18px',
+          'color': '#33D900'
+        });
+    });
+    $('#submit').attr('go', "");
     show_prompt("Password:", "password");
   }, 1000);
-};
+}
 
 //Personal Functions
 function user_clicked(event) {
-  if (data.selected && event.target.getAttribute("id") == data.selected_user) {
-    show_message(
-      "Already authenticating " + data.selected.display_name,
-      "warning"
-    );
+  if (data.selected && event.target.getAttribute('id') == data.selected_user) {
+    show_message("Already authenticating " + data.selected.display_name, 'warning');
   }
   if (lightdm.in_authentication) {
     cancel_authentication();
   }
-  authUser(event.target.getAttribute("id"));
+  authUser(event.target.getAttribute('id'));
 }
 
 function respond(event) {
-  lightdm.respond($("#pass_entry").val());
+  lightdm.respond($('#pass_entry').val());
 }
 
 function init() {
@@ -142,12 +137,12 @@ function init() {
     //Init the user list
     initUsers();
   } catch (exception) {
-    console.error("Error:\n" + exception);
+    console.error('Error:\n' + exception);
   }
 }
 
 function initUsers() {
-  var $name_template = $("#username_template");
+  var $name_template = $('#username_template');
   var $name_parent = $name_template.parent();
   $name_template.remove();
   for (var i = 0; i < lightdm.users.length; i++) {
@@ -161,59 +156,52 @@ function initUsers() {
     });
     if (selected_user.logged_in) {
       ++active_users;
-      $($userNode)
-        .find(".user_locked")
-        .each(function() {
-          $(this)
-            .addClass("fa fa-circle")
-            .css({
-              "font-family": "",
-              "font-size": "7pt",
-              position: "absolute",
-              right: "12px",
-              "padding-top": "18px",
-              color: "#33D900"
-            });
-        });
+      $($userNode).find('.user_locked').each(function() {
+        $(this)
+          .addClass('fa fa-circle')
+          .css({
+            'font-family': '',
+            'font-size': '7pt',
+            'position': 'absolute',
+            'right': '12px',
+            'padding-top': '18px',
+            'color': '#33D900'
+          });
+      });
     }
     // Implement the trial count
-    $userNode.attr("id", selected_user.username);
+    $userNode.attr('id', selected_user.username);
     $userNode.get(0).onclick = user_clicked;
-    $userNode.attr(
-      "session",
-      selected_user.session ? selected_user.session : lightdm.default_session
-    );
+    $userNode.attr('session', (selected_user.session) ? selected_user.session : lightdm.default_session);
     $name_parent.append($userNode);
   }
   user = lightdm.users[0].username;
   authUser(user);
-  $name_parent.data("selected", user);
-  $(".user_selector").niceSelect("update");
+  $name_parent.data('selected', user);
+  $('.user_selector').niceSelect('update');
 }
 
 function setUserImage(user, box) {
-  if (box.attr("rpath") != user.image) {
-    $("#user_image")
-      .fadeOut(250, () => {
-        if (user.image) {
-          box.attr("src", user.image);
-          box.attr("rpath", user.image);
-          box.on("error", () => {
-            box.attr("src", "src/img/avatar/default.png");
-          });
-        } else {
-          box.attr("src", "src/img/avatars/default.png");
-        }
-      })
-      .fadeIn(250);
+  if (box.attr('rpath') != user.image) {
+    $('#user_image').fadeOut(250, () => {
+      if (user.image) {
+        box.attr('src', user.image);
+        box.attr('rpath', user.image);
+        box.on('error', () => {
+          box.attr('src', 'src/img/avatar/default.png');
+        });
+      } else {
+        box.attr('src', 'src/img/avatars/default.png');
+      }
+    }).fadeIn(250);
   }
 }
 
 function authUser(user) {
   data.selected_user = user;
   data.selected = getPack(user);
-  data.session = $("#" + user).attr("session");
-  setUserImage(data.selected, $("#user_image"));
+  data.session = $("#" + user).attr('session');
+  setUserImage(data.selected, $('#user_image'));
   if (user) {
     lightdm.authenticate(user);
   }
@@ -248,46 +236,39 @@ function getPack(username) {
 }
 
 function prepShoot() {
-  $("select, .user_selector").niceSelect();
+  $('select, .user_selector').niceSelect();
   FastClick.attach(document.body);
   initFPB();
   initTooltip();
-  $("#loading").fadeOut(100);
+  $('#loading').fadeOut(100);
 }
 
-function notify(msg = "", ...args) {
-  var type = "info",
-    attr = (options = {});
-  if (args[0] && typeof args[0] === "string") {
+function notify(msg = '', ...args) {
+  var type = 'info',
+    attr = options = {};
+  if (args[0] && typeof args[0] === 'string') {
     type = args[0];
-  } else if (args[0] && typeof args[0] === "object") {
+  } else if (args[0] && typeof args[0] === 'object') {
     attr = args[0];
   }
-  if (args[1] && typeof args[1] === "object") {
+  if (args[1] && typeof args[1] === 'object') {
     options = args[1];
   }
-  return $.notify(
-    mixIn(
-      {
-        message: msg,
-        title: "ArtanOS Lock",
-        icon: "fa fa-bell"
-      },
-      attr
-    ),
-    mixIn(
-      {
-        type: type,
-        newest_on_top: true,
-        z_index: 11,
-        delay: 2000,
-        timer: 500,
-        animate: {
-          enter: "animated " + (type == "danger" ? "flipInY" : "bounceInDown"),
-          exit: "animated " + (type == "danger" ? "flipOutX" : "bounceOutUp")
-        },
-        template:
-          '\
+  return $.notify(mixIn({
+    message: msg,
+    title: "ArtanOS Lock",
+    icon: "fa fa-bell"
+  }, attr), mixIn({
+    type: type,
+    newest_on_top: true,
+    z_index: 11,
+    delay: 2000,
+    timer: 500,
+    animate: {
+      enter: 'animated ' + ((type == 'danger') ? 'flipInY' : 'bounceInDown'),
+      exit: 'animated ' + ((type == 'danger') ? 'flipOutX' : 'bounceOutUp')
+    },
+    template: '\
     <div data-notify="container" class="col-xs-11 col-sm-4 alert alert-{0}" role="alert">\
       <button type="button" aria-hidden="true" class="close" data-notify="dismiss">&times;</button>\
       <span data-notify="icon"></span>\
@@ -300,10 +281,7 @@ function notify(msg = "", ...args) {
       </div>\
       <a href="{3}" target="{4}" data-notify="url"></a>\
     </div>'
-      },
-      options
-    )
-  );
+  }, options));
 }
 
 function mixIn(orig, other) {
@@ -319,9 +297,9 @@ function mixIn(orig, other) {
 
 function initFPB() {
   function toggleMenu() {
-    $(".power-btn-sm").toggleClass("scale-out");
-    if (!$(".power-card").hasClass("scale-out")) {
-      $(".power-card").toggleClass("scale-out");
+    $('.power-btn-sm').toggleClass('scale-out');
+    if (!$('.power-card').hasClass('scale-out')) {
+      $('.power-card').toggleClass('scale-out');
     }
   }
 
@@ -332,7 +310,7 @@ function initFPB() {
       $("#powerLmtr").fadeIn(500);
     }
   }
-  $("#powerBtn, #powerLmtr").click(function() {
+  $('#powerBtn, #powerLmtr').click(function() {
     toggleMenu();
     toggleLmtr();
   });
@@ -343,54 +321,51 @@ function initFPB() {
     $('#powerBtn').fadeIn(200);
   });
   */
-  $(".power-btn-sm").click(function() {
+  $('.power-btn-sm').click(function() {
     var btn = $(this);
-    var card = $(".power-card");
+    var card = $('.power-card');
 
-    if ($(".power-card").hasClass("scale-out")) {
-      $(".power-card").toggleClass("scale-out");
+    if ($('.power-card').hasClass('scale-out')) {
+      $('.power-card').toggleClass('scale-out');
     }
-    if (btn.hasClass("power-btn-shutdown")) {
-      card.css("background-color", "#d32f2f");
-    } else if (btn.hasClass("power-btn-hibernate")) {
-      card.css("background-color", "#fbc02d");
-    } else if (btn.hasClass("power-btn-restart")) {
-      card.css("background-color", "#388e3c");
+    if (btn.hasClass('power-btn-shutdown')) {
+      card.css('background-color', '#d32f2f');
+    } else if (btn.hasClass('power-btn-hibernate')) {
+      card.css('background-color', '#fbc02d');
+    } else if (btn.hasClass('power-btn-restart')) {
+      card.css('background-color', '#388e3c');
     }
-    $("#power-yes")[0].onclick = function() {
-      eval(btn.parent().attr("action"));
+    $('#power-yes')[0].onclick = function() {
+      eval(btn.parent().attr('action'));
     };
   });
 }
 
 function initTooltip() {
-  $("[tooltip]").hover(
-    function(evt) {
-      ordin8 = getCoord(evt.currentTarget, "top", "left");
-      $that = $(evt.currentTarget);
-      tooltip = $that.attr("tooltip");
-      display_text = forMatr(tooltip, {
-        "%html": $that.html(),
-        "%text": $that.text(),
-        "%id": $that.attr("id")
-      });
-      $("#tooltip-box")
-        .html(display_text)
-        .css("left", ordin8.left + "px")
-        .css("top", ordin8.top + $that.outerHeight() + 5 + "px")
-        .show();
-    },
-    function() {
-      $("#tooltip-box").hide();
-    }
-  );
+  $('[tooltip]').hover(function(evt) {
+    ordin8 = getCoord(evt.currentTarget, 'top', 'left');
+    $that = $(evt.currentTarget);
+    tooltip = $that.attr('tooltip');
+    display_text = forMatr(tooltip, {
+      '%html': $that.html(),
+      '%text': $that.text(),
+      '%id': $that.attr('id')
+    });
+    $('#tooltip-box')
+      .html(display_text)
+      .css('left', (ordin8.left) + 'px')
+      .css('top', (ordin8.top + $that.outerHeight() + 5) + 'px')
+      .show();
+  }, function() {
+    $('#tooltip-box').hide();
+  });
 }
 
 function getCoord(el, ...direction) {
   function get(el, pos) {
     var scrollTop = $(window).scrollTop(),
       elementOffset = $(el).offset()[pos];
-    return elementOffset - scrollTop;
+    return (elementOffset - scrollTop);
   }
   if (direction.length > 1) {
     res = {};
@@ -404,34 +379,34 @@ function getCoord(el, ...direction) {
 }
 
 function forMatr(txt, ...format) {
-  if (format.length == 1 && typeof format[0] === "object") {
+  if (format.length == 1 && typeof format[0] === 'object') {
     dict = format[0];
     for (i in dict) {
       txt = txt.replace(i, dict[i]);
     }
-  } else if (typeof format[0] === "string" && typeof format[1] === "string") {
+  } else if (typeof format[0] === 'string' && typeof format[1] === 'string') {
     txt = txt.replace(format[0], format[1]);
   } else {
-    console.error("forMatr:: Illegal formatting");
+    console.error('forMatr:: Illegal formatting');
   }
   return txt;
 }
 
 function toggleVisibility() {
   $el = $("#visibility_toggler");
-  $box = $("#pass_entry");
-  if ($box.attr("type") == "password") {
-    $box.attr("type", "text");
-    $el.removeClass("fa-eye").addClass("fa-eye-slash");
+  $box = $('#pass_entry');
+  if ($box.attr('type') == 'password') {
+    $box.attr('type', 'text');
+    $el.removeClass('fa-eye').addClass('fa-eye-slash');
   } else {
-    $box.attr("type", "password");
-    $el.removeClass("fa-eye-slash").addClass("fa-eye");
+    $box.attr('type', 'password');
+    $el.removeClass('fa-eye-slash').addClass('fa-eye');
   }
   $box.focus();
 }
 
 /* FOR DEBUG ONLY */
 
-function showP(tag = "html") {
+function showP(tag = 'html') {
   alert($(tag).html());
 }
