@@ -150,7 +150,7 @@ function initUsers() {
     $userNode = $name_template.clone();
     $children = $name_template.children().clone(true, true);
     dispName = selected_user.display_name;
-    $userNode.html(c$.reduce(15, dispName));
+    $userNode.html(c$.reduce(12, dispName));
     $children.each(function() {
       $userNode.append(this);
     });
